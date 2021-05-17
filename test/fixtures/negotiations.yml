@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  ask_price: 9.99
+  offer_price: 9.99
+  accepted: false
+  active: false
+
+two:
+  ask_price: 9.99
+  offer_price: 9.99
+  accepted: false
+  active: false
