@@ -1,4 +1,4 @@
 class Gig < ApplicationRecord
   belongs_to :user
-  has_many :negotiation
+  has_many :negotiations
 end
