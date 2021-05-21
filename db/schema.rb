@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_21_040407) do
+ActiveRecord::Schema.define(version: 2021_05_21_051524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2021_05_21_040407) do
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_bands_on_user_id"
   end
 
   create_table "gigs", force: :cascade do |t|
@@ -35,6 +37,8 @@ ActiveRecord::Schema.define(version: 2021_05_21_040407) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "date"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_gigs_on_user_id"
   end
 
   create_table "negotiations", force: :cascade do |t|
@@ -45,6 +49,10 @@ ActiveRecord::Schema.define(version: 2021_05_21_040407) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.decimal "accepted_price"
+    t.bigint "band_id", null: false
+    t.bigint "gig_id", null: false
+    t.index ["band_id"], name: "index_negotiations_on_band_id"
+    t.index ["gig_id"], name: "index_negotiations_on_gig_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,4 +63,8 @@ ActiveRecord::Schema.define(version: 2021_05_21_040407) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "bands", "users"
+  add_foreign_key "gigs", "users"
+  add_foreign_key "negotiations", "bands"
+  add_foreign_key "negotiations", "gigs"
 end

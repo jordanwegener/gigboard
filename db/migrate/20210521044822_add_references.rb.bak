@@ -1,0 +1,13 @@
+class AddReferences < ActiveRecord::Migration[6.1]
+  def change
+    add_column :gigs, :user_id, :integer
+    add_column :bands, :user_id, :integer
+    add_column :negotiations, :gig_id, :integer
+    add_column :negotiations, :band_id, :integer
+
+    add_reference :gigs, :user_id, foreign_key: true
+    add_reference :bands, :user_id, foreign_key: true
+    add_reference :negotiations, :gig_id, foreign_key: true
+    add_reference :negotiations, :band_id, foreign_key: true
+  end
+end
