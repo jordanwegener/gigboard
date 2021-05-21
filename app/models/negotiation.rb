@@ -6,5 +6,6 @@ class Negotiation < ApplicationRecord
   def set_default_status
     self.active = true
     self.accepted = false
+    self.ask_price = gig.ask_price
   end
 end
