@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: "gigs#index"
   devise_for :users, skip: :all
   devise_scope :user do
     get "/users/sign_in", to: "devise/sessions#new"
+    get "/users/sign_out", to: "devise/sessions#destroy"
     post "/users/sign_in", to: "devise/sessions#create"
     delete "/users/sign_out", to: "devise/sessions#destroy"
     get "/users/password/new", to: "devise/passwords#new"
