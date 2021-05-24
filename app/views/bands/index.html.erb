@@ -16,13 +16,13 @@
     <main role="main">
       <%= content_for?(:content) ? yield(:content) : yield %>
       <h1>Welcome to GigBoard!</h1>
-      <h2>Currently listed gigs:</h2>
+      <h2>Bands</h2>
       <ul>
-        <% @gigs.each do |gig| %>
-          <li><%= gig.title %> | Location: <%= gig.location %> | <%= number_to_currency(gig.ask_price) %> <%= link_to 'Show', gig %></li>
+        <% @bands.each do |band| %>
+          <li><%= band.name %> | Location: <%= band.location %> | <%= band.style %> <%= link_to 'Show', band %></li>
         <% end %>
       </ul>
-      <%= link_to 'Add a new gig listing', new_gig_path %>
+      <%= link_to 'Add a new gig band', new_band_path %>
     </main>
   </body>
 </html>
