@@ -16,7 +16,7 @@
     <main role="main">
       <%= content_for?(:content) ? yield(:content) : yield %>
       <h1>New Gig Listing</h1>
-      <%= form_with scope: :gig, local: true do |form| %>
+      <%= form_with scope: :gig, local: true, method: :get do |form| %>
         <p>
           <%= form.label :title %><br>
           <%= form.text_field :title %>
@@ -46,7 +46,7 @@
           <%= form.text_area :description %>
         </p>
         <p>
-          <%= form.submit %>
+          <%= form.submit "Create Gig" %>
         </p>
       <% end %>
     </main>

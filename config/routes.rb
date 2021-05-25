@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     delete "/users", to: "devise/registrations#destroy"
     post "/users", to: "devise/registrations#create"
   end
+  get "/users/index", to: "users#index"
   resources :gigs, :bands, :negotiations
   post "/gigs/new", controller: "gigs", action: "create"
   post "/bands/new", controller: "bands", action: "new"

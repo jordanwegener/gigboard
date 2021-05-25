@@ -1,6 +1,6 @@
   <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">GigBoard</a>
+    <a class="navbar-brand" href="/">GigBoard</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -9,22 +9,27 @@
         <li class="nav-item">
           <%= link_to 'Home', root_path %>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Search for Gigs</a>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Add a Gig', new_gig_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Add a Band', new_band_path %>
-        </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Add a Gig', new_gig_path %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Add a Band', new_band_path %>
+          </li>
+        <% end %>
       </ul>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0:>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <a class="nav-link" href="/users/index">User Profile</a>
+          </li>
+        <% end %>
         <li class="nav-item">
-          <a class="nav-link" href="#">User Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="./users/sign_out">Logout</a>
+          <% if user_signed_in? %>
+            <a class="nav-link" href="/users/sign_out">Sign Out</a>
+          <% else %>
+            <a class="nav-link" href="/users/sign_in">Sign In</a>
+          <% end %>
         </li>
       </ul>
     </div>

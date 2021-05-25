@@ -26,8 +26,8 @@ User.destroy_all
 puts "Seeding DB"
 puts "Creating Users, Gigs and Bands"
 user1 = User.create!(username: "gigs1", email: "gigs1@mail.com", password: "password")
-user2 = User.create!(username: "bands1", email: "bands1@mail.com", password: "password")
-user3 = User.create!(username: "gigs2", email: "gigs2@mail.com", password: "password")
+user2 = User.create!(username: "gigs2", email: "gigs2@mail.com", password: "password")
+user3 = User.create!(username: "bands1", email: "bands1@mail.com", password: "password")
 user4 = User.create!(username: "bands2", email: "bands2@mail.com", password: "password")
 
 5.times do
@@ -38,13 +38,13 @@ user4 = User.create!(username: "bands2", email: "bands2@mail.com", password: "pa
     end_time: ((rand(1..12).to_s) + " PM"),
     ask_price: rand(50.00..500.00),
     description: Faker::Lorem.paragraph,
-    date: Faker::Date,
+    date: Faker::Date.between(from: Date.today, to: 150.days.from_now),
     active: true,
   )
 end
 
 5.times do
-  user3.gigs.create!(
+  user2.gigs.create!(
     title: generate_gig_name,
     location: (Faker::Address.street_address + ", " + Faker::Address.city),
     start_time: ((rand(1..12).to_s) + " AM"),
@@ -56,8 +56,52 @@ end
   )
 end
 
+# 5.times do
+#   user3.gigs.create!(
+#     title: generate_gig_name,
+#     location: (Faker::Address.street_address + ", " + Faker::Address.city),
+#     start_time: ((rand(1..12).to_s) + " AM"),
+#     end_time: ((rand(1..12).to_s) + " PM"),
+#     ask_price: rand(50.00..500.00),
+#     description: Faker::Lorem.paragraph,
+#     date: Faker::Date,
+#     active: true,
+#   )
+# end
+
+# 5.times do
+#   user4.gigs.create!(
+#     title: generate_gig_name,
+#     location: (Faker::Address.street_address + ", " + Faker::Address.city),
+#     start_time: ((rand(1..12).to_s) + " AM"),
+#     end_time: ((rand(1..12).to_s) + " PM"),
+#     ask_price: rand(50.00..500.00),
+#     description: Faker::Lorem.paragraph,
+#     date: Faker::Date,
+#     active: true,
+#   )
+# end
+
+# 3.times do
+#   user1.bands.create!(
+#     name: Faker::Music.band,
+#     location: Faker::Address.city,
+#     style: Faker::Music.genre,
+#     description: Faker::Lorem.paragraph,
+#   )
+# end
+
+# 3.times do
+#   user2.bands.create!(
+#     name: Faker::Music.band,
+#     location: Faker::Address.city,
+#     style: Faker::Music.genre,
+#     description: Faker::Lorem.paragraph,
+#   )
+# end
+
 3.times do
-  user2.bands.create!(
+  user3.bands.create!(
     name: Faker::Music.band,
     location: Faker::Address.city,
     style: Faker::Music.genre,

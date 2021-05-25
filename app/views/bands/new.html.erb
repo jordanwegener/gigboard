@@ -16,7 +16,7 @@
     <main role="main">
       <%= content_for?(:content) ? yield(:content) : yield %>
       <h1>New Band</h1>
-      <%= form_with scope: :gig, local: true do |form| %>
+      <%= form_with scope: :band, local: true do |form| %>
         <p>
           <%= form.label :name %><br>
           <%= form.text_field :name %>
@@ -34,7 +34,7 @@
           <%= form.text_field :description %>
         </p>
         <p>
-          <%= form.submit %>
+          <%= form.submit "Add Band" %>
         </p>
       <% end %>
     </main>

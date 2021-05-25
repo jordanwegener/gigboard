@@ -4,7 +4,7 @@ class GigsController < ApplicationController
   before_action :authorize_gig, only: [:edit, :update, :destroy, :deactivate]
 
   def index
-    @gigs = Gig.where(active: true)
+    @gigs = Gig.search(params[:search])
   end
 
   def show
@@ -12,8 +12,8 @@ class GigsController < ApplicationController
 
   def new
     @gig = Gig.new
-    flash[:alert] = "Gig successfully listed!"
-    redirect_to gigs_path
+    # flash[:alert] = "Gig successfully listed!"
+    # redirect_to gigs_path
   end
 
   def create
@@ -34,7 +34,7 @@ class GigsController < ApplicationController
   private
 
   def gig_params
-    params.require(:gig).permit(:title, :location, :start_time, :end_time, :ask_price, :description, :date)
+    params.require(:gig).permit(:title, :location, :start_time, :end_time, :ask_price, :description, :date, :search)
   end
 
   def authorize_gig

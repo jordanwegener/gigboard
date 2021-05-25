@@ -16,6 +16,12 @@
     <main role="main">
       <%= content_for?(:content) ? yield(:content) : yield %>
       <h1>Welcome to GigBoard!</h1>
+      <h1>Search for Gigs</h1>
+      <%= form_tag(gigs_path, method: :get) do %>
+        <%= text_field_tag(:search, params[:search]) %>
+        <%= submit_tag "Search" %>
+      <% end %>
+      <br>
       <h2>Currently listed gigs:</h2>
       <ul>
         <% @gigs.each do |gig| %>
