@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Home" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "GigBoard: Home" %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Gigboard: Home" %>">
     <%= csrf_meta_tags %>
@@ -16,7 +16,7 @@
     <main role="main">
       <%= content_for?(:content) ? yield(:content) : yield %>
       <h1>Welcome to GigBoard!</h1>
-      <h1>Search for Gigs</h1>
+      <h3>Search for Gigs</h3>
       <%= form_tag(gigs_path, method: :get) do %>
         <%= text_field_tag(:search, params[:search]) %>
         <%= submit_tag "Search" %>

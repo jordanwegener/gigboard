@@ -6,8 +6,9 @@ class Gig < ApplicationRecord
 
   def self.search(search)
     if search
+      (Gig.where("title ILIKE :search OR location ILIKE :search OR description ILIKE :search", search: "%#{search}%")).where(active: true)
     else
-      Gig.all
+      Gig.where(active: true)
     end
   end
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= content_for?(:title) ? yield(:title) : "Home" %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Gigboard: Negotiate Gig" %>">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <body>
+    <header>
+      <%= render :partial => 'navbar', locals: { post: @post } %>
+    </header>
+    <main role="main">
+      <%= content_for?(:content) ? yield(:content) : yield %>
+      <h1>Gig Negotiation</h1>
+      <h3>Gig: <%= @gig.title %></h2>
+      <h3>Current ask price: $300</h2>
+      <%= form_with scope: :negotiation, local: true do |form| %>
+        <p>
+          <%= form.label :offer_price %><br>
+          <%= form.text_field :offer_price %>
+        </p>
+        <p>
+          <%= form.label :message %><br>
+          <%= form.text_area :message %>
+        </p>
+        <p>
+          <%= form.submit %>
+        </p>
+      <% end %>
+    </main>
+  </body>
+</html>

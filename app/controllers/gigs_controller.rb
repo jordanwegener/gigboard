@@ -31,6 +31,9 @@ class GigsController < ApplicationController
     redirect_to gigs_path
   end
 
+  def book
+  end
+
   private
 
   def gig_params

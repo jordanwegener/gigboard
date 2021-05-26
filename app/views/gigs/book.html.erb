@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for?(:title) ? yield(:title) : "View Gig" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Book Gig" %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Gigboard: View Gig" %>">
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Gigboard: Book Gig" %>">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -24,7 +24,7 @@
       </ul>
       <h3>Description</h3>
       <%= @gig.description %>
-      <h4><%= link_to "Make an offer to play this gig", "book" %></h4>
+      <h4><%= link_to "Make an offer to play this gig", "/book" %></h4>
       <p><%= link_to "Back to Gigs", gigs_path%></p>
     </main>
   </body>

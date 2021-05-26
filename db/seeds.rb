@@ -51,7 +51,7 @@ end
     end_time: ((rand(1..12).to_s) + " PM"),
     ask_price: rand(50.00..500.00),
     description: Faker::Lorem.paragraph,
-    date: Faker::Date,
+    date: Faker::Date.between(from: Date.today, to: 150.days.from_now),
     active: true,
   )
 end
@@ -64,7 +64,7 @@ end
 #     end_time: ((rand(1..12).to_s) + " PM"),
 #     ask_price: rand(50.00..500.00),
 #     description: Faker::Lorem.paragraph,
-#     date: Faker::Date,
+#     date: Faker::Date.between(from: Date.today, to: 150.days.from_now),
 #     active: true,
 #   )
 # end
@@ -77,7 +77,7 @@ end
 #     end_time: ((rand(1..12).to_s) + " PM"),
 #     ask_price: rand(50.00..500.00),
 #     description: Faker::Lorem.paragraph,
-#     date: Faker::Date,
+#     date: Faker::Date.between(from: Date.today, to: 150.days.from_now),
 #     active: true,
 #   )
 # end
