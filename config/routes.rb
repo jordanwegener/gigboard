@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  # devise_for :users
+  # resources :gigs, only: [:create]
   root to: "gigs#index"
   devise_for :users, skip: :all
   devise_scope :user do
@@ -20,9 +21,12 @@ Rails.application.routes.draw do
     delete "/users", to: "devise/registrations#destroy"
     post "/users", to: "devise/registrations#create"
   end
-  get "/users/index", to: "users#index"
-  resources :gigs, :bands, :negotiations
-  post "/gigs/new", controller: "gigs", action: "create"
-  get "/gigs/book", controller: "gigs", action: "book"
-  post "/bands/new", controller: "bands", action: "new"
+  get "/users/index", to: "users#index", as: "user"
+  get "/gigs/index", to: "gigs#index", as: "gigs"
+  get "/gigs/new", to: "gigs#new", as: "new_gig"
+  get "/gigs/book", to: "gigs#book", as: "book_gig"
+  post "/gigs/", to: "gigs#create", as: "create_gig"
+  get "/gigs/:id", to: "gigs#show", as: "gig"
+  get "/bands/new", to: "bands#new", as: "new_band"
+  get "/bands/:id", to: "bands#show", as: "band"
 end

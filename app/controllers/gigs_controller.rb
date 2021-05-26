@@ -1,5 +1,5 @@
 class GigsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit]
+  # before_action :authenticate_user, only: [:new, :edit]
   before_action :set_gig, only: [:show]
   before_action :authorize_gig, only: [:edit, :update, :destroy, :deactivate]
 
@@ -7,22 +7,22 @@ class GigsController < ApplicationController
     @gigs = Gig.search(params[:search])
   end
 
+  def create
+    # @gig = current_user.gigs.new(gig_params)
+    @gig = Gig.new(gig_params)
+    @gig.user = current_user
+    if @gig.save
+      redirect_to gig_path(@gig)
+    else
+      render "new"
+    end
+  end
+
   def show
   end
 
   def new
     @gig = Gig.new
-    # flash[:alert] = "Gig successfully listed!"
-    # redirect_to gigs_path
-  end
-
-  def create
-    @gig = current_user.gigs.new(gig_params)
-    if @gig.save
-      redirect_to @gig
-    else
-      render :new
-    end
   end
 
   def destroy

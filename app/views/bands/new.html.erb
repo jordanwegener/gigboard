@@ -1,42 +1,25 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= content_for?(:title) ? yield(:title) : "Home" %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Gigboard: New Band" %>">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  </head>
-  <body>
-    <header>
-      <%= render :partial => 'navbar', locals: { post: @post } %>
-    </header>
-    <main role="main">
-      <%= content_for?(:content) ? yield(:content) : yield %>
-      <h1>New Band</h1>
-      <%= form_with scope: :band, local: true do |form| %>
-        <p>
-          <%= form.label :name %><br>
-          <%= form.text_field :name %>
-        </p>
-        <p>
-          <%= form.label :location %><br>
-          <%= form.text_field :location %>
-        </p>
-        <p>
-          <%= form.label :style %><br>
-          <%= form.text_field :style %>
-        </p>
-        <p>
-          <%= form.label :description %><br>
-          <%= form.text_field :description %>
-        </p>
-        <p>
-          <%= form.submit "Add Band" %>
-        </p>
-      <% end %>
-    </main>
-  </body>
-</html>
+<main role="main">
+  <%= content_for?(:content) ? yield(:content) : yield %>
+  <h1>New Band</h1>
+  <%= form_with scope: :band, local: true do |form| %>
+    <p>
+      <%= form.label :name %><br>
+      <%= form.text_field :name %>
+    </p>
+    <p>
+      <%= form.label :location %><br>
+      <%= form.text_field :location %>
+    </p>
+    <p>
+      <%= form.label :style %><br>
+      <%= form.text_field :style %>
+    </p>
+    <p>
+      <%= form.label :description %><br>
+      <%= form.text_field :description %>
+    </p>
+    <p>
+      <%= form.submit "Add Band" %>
+    </p>
+  <% end %>
+</main>

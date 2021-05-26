@@ -1,31 +1,19 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= content_for?(:title) ? yield(:title) : "View Gig" %></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Gigboard: View Gig" %>">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  </head>
-  <body>
-    <header>
-      <%= render :partial => 'navbar', locals: { post: @post } %>
-    </header>
-    <main role="main">
-      <%= content_for?(:content) ? yield(:content) : yield %>
-      <h2><%= @gig.title %></h2>
-      <ul>
-        <li> Location: <%= @gig.location %>  </li>
-        <li> Date: <%= @gig.date %></li>
-        <li> Start and end time: <%= @gig.start_time %> - <%= @gig.end_time %> </li>
-        <li> Ask price: <%= number_to_currency(@gig.ask_price) %></li>
-      </ul>
-      <h3>Description</h3>
-      <%= @gig.description %>
-      <h4><%= link_to "Make an offer to play this gig", "book" %></h4>
-      <p><%= link_to "Back to Gigs", gigs_path%></p>
-    </main>
-  </body>
-</html>
+<main role="main">
+  <h2><%= @gig.title %></h2>
+  <ul>
+    <li> Location: <%= @gig.location %>  </li>
+    <li> Date: <%= @gig.date %></li>
+    <li> Start and end time: <%= @gig.start_time %> - <%= @gig.end_time %> </li>
+    <li> Ask price: <%= number_to_currency(@gig.ask_price) %></li>
+  </ul>
+  <h3>Description</h3>
+  <%= @gig.description %>
+  <% if current_user %>
+    <% if @gig.user_id == current_user.id %>
+      <h4>This gig belongs to you</h4>
+    <% else %>
+      <h4><%= link_to "Make an offer to play this gig", book_gig_path %></h4>
+    <% end %>
+  <% end%>
+  <p><%= link_to "Back to Gigs", gigs_path%></p>
+</main>

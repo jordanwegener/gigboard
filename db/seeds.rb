@@ -32,7 +32,7 @@ user4 = User.create!(username: "bands2", email: "bands2@mail.com", password: "pa
 
 5.times do
   user1.gigs.create!(
-    title: generate_gig_name,
+    title: "user1 " + generate_gig_name,
     location: (Faker::Address.street_address + ", " + Faker::Address.city),
     start_time: ((rand(1..12).to_s) + " AM"),
     end_time: ((rand(1..12).to_s) + " PM"),
