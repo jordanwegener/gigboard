@@ -1,7 +1,7 @@
 <main role="main">
   <%= content_for?(:content) ? yield(:content) : yield %>
   <h1>Edit Band</h1>
-  <%= form_with scope: :band, local: true, method: :put do |form| %>
+  <%= form_with model: @band, local: true, method: :put do |form| %>
     <p>
       <%= form.label :name %><br>
       <%= form.text_field :name, value: @band.name %>
@@ -19,7 +19,7 @@
       <%= form.text_area :description %>
     </p>
     <p>
-      <%= form.submit "Update band" %>
+      <%= form.submit "Update band", class: "btn btn-primary" %>
     </p>
   <% end %>
 </main>

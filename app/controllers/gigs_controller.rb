@@ -44,7 +44,7 @@ class GigsController < ApplicationController
     if @gig.update(gig_params)
       redirect_to @gig
     else
-      render :edit
+      render "new"
     end
   end
 
