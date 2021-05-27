@@ -6,33 +6,47 @@
   <h2>Your Bookings (as band)</h2>
   <% if @user_negotiations_as_band.length > 0 %>
     <% @user_negotiations_as_band.each do |negotiation| %>
-      <%= negotiation.gig.title %>
-      <%= negotiation.gig.ask_price %>
-      <%= negotiation.status %>
-    <% end %>>
+      <h5><strong>Gig title:</strong> <%= negotiation.gig.title %></h5>
+      <ul>
+        <li><strong>Gig location:</strong> <%= negotiation.gig.location %></li>
+        <li><strong>Gig date:</strong> <%= negotiation.gig.date %></li>
+        <li><strong>Gig duration:</strong> <%= negotiation.gig.start_time %> to <%= negotiation.gig.end_time %></li>
+        <li><strong>Ask price:</strong> <%= number_to_currency(negotiation.gig.ask_price) %></li>
+      </ul>
+      <p><strong>Status:</strong> <%= negotiation.status %></p>
+      <%= link_to "View booking", negotiation_path(negotiation), class: "btn btn-primary" %>
+    <% end %>
   <% else %>
     <p>You have no bookings as a band.</p>
   <% end %>
   <h2>Your Bookings (as gig organiser)</h2>
   <% if @user_negotiations_as_gig.length > 0 %>
     <% @user_negotiations_as_gig.each do |negotiation| %>
-      <%= negotiation.gig.title %>
-      <%= negotiation.gig.ask_price %>
-      <%= negotiation.status %>
-    <% end %>>
+      <h5><strong>Gig title:</strong> <%= negotiation.gig.title %></h5>
+      <ul>
+        <li><strong>Gig location:</strong> <%= negotiation.gig.location %></li>
+        <li><strong>Gig date:</strong> <%= negotiation.gig.date %></li>
+        <li><strong>Gig duration:</strong> <%= negotiation.gig.start_time %> to <%= negotiation.gig.end_time %></li>
+        <li><strong>Ask price:</strong> <%= number_to_currency(negotiation.gig.ask_price) %></li>
+      </ul>
+      <p><strong>Status:</strong> <%= negotiation.status %></p>
+      <%= link_to "View booking", negotiation_path(negotiation), class: "btn btn-primary" %>
+    <% end %>
   <% else %>
     <p>You have no bookings as a gig organiser.</p>
   <% end %>
   <h2>Your Gigs</h2>
   <% if @user.gigs.length > 0 %>
     <% @user.gigs.each do |gig| %>
-      <p><strong>Gig title:</strong> <%= gig.title %></p>
-      <p><strong>Gig location:</strong> <%= gig.location %></p>
-      <p><strong>Gig date:</strong> <%= gig.date %></p>
-      <p><strong>Gig duration:</strong> <%= gig.start_time %> to <%= gig.end_time %></p>
-      <p><strong>Gig ask price:</strong> <%= number_to_currency(gig.ask_price) %></p>
-      <a href="#">Edit this gig</a>
-      <p>------------------------------------------</p>
+      <h5><strong>Gig title:</strong> <%= gig.title %></h5>
+      <ul>
+        <li><strong>Gig location:</strong> <%= gig.location %></li>
+        <li><strong>Gig date:</strong> <%= gig.date %></li>
+        <li><strong>Gig duration:</strong> <%= gig.start_time %> to <%= gig.end_time %></li>
+        <li><strong>Gig ask price:</strong> <%= number_to_currency(gig.ask_price) %></li>
+      </ul>
+      <%= link_to "View  gig", gig_path(gig), class: "btn btn-primary" %>
+      <br>
     <% end%>
   <% else %>
     <p>You have no gigs. Would you like to <a href="/gigs/new">create one?</a></p>
@@ -48,6 +62,6 @@
       <p>------------------------------------------</p>
     <% end %>
   <% else %>
-    <p>You have no bands. Would you like to <a href="/bands/new">create one?</a></p>
+    <p>You have no bands. Would you like to <%= link_to "create one?", new_band_path %></p>
   <% end%>
 </main>
