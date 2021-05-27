@@ -1,0 +1,13 @@
+<h4>If accepted you will be paid <%= number_to_currency(@negotiation.gig.ask_price) %></h4>
+<% case @negotiation.status%>
+<% when "pending" %>
+<p>The organiser of this gig hasn't responded to your booking request yet.</p>
+<% when "accepted" %>
+<p>Your booking request has been <strong>accepted</strong> but no deposit has been paid.</p>
+<% when "rejected" %>
+<p>Sorry, your booking request has been rejected.</p>
+<%= link_to "Back to homepage", destroy_negotiation_path %>
+<% when "paid" %>
+<p>Your booking request has been <strong>accepted</strong> and a deposit has been paid!</p>
+<p>Please contact <%= @negotiation.gig.user.email %> to confirm.</p>
+<% end %>

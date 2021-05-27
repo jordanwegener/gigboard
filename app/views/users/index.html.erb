@@ -3,6 +3,26 @@
   <h1>User Profile</h1>
   <p>Username: <%= @user.username %></p>
   <p>Email: <%= @user.email %></p>
+  <h2>Your Bookings (as band)</h2>
+  <% if @user_negotiations_as_band.length > 0 %>
+    <% @user_negotiations_as_band.each do |negotiation| %>
+      <%= negotiation.gig.title %>
+      <%= negotiation.gig.ask_price %>
+      <%= negotiation.status %>
+    <% end %>>
+  <% else %>
+    <p>You have no bookings as a band.</p>
+  <% end %>
+  <h2>Your Bookings (as gig organiser)</h2>
+  <% if @user_negotiations_as_gig.length > 0 %>
+    <% @user_negotiations_as_gig.each do |negotiation| %>
+      <%= negotiation.gig.title %>
+      <%= negotiation.gig.ask_price %>
+      <%= negotiation.status %>
+    <% end %>>
+  <% else %>
+    <p>You have no bookings as a gig organiser.</p>
+  <% end %>
   <h2>Your Gigs</h2>
   <% if @user.gigs.length > 0 %>
     <% @user.gigs.each do |gig| %>

@@ -1,19 +1,11 @@
 <main role="main">
-  <%= content_for?(:content) ? yield(:content) : yield %>
-  <h1>Gig Negotiation</h1>
-  <h3>Gig: Test</h2>
-  <h3>Current ask price: $300</h2>
-  <%= form_with scope: :negotiation, local: true do |form| %>
-    <p>
-      <%= form.label :offer_price %><br>
-      <%= form.text_field :offer_price %>
-    </p>
-    <p>
-      <%= form.label :message %><br>
-      <%= form.text_area :message %>
-    </p>
-    <p>
-      <%= form.submit %>
-    </p>
-  <% end %>
+  <h1>show negotitation path</h1>
+  <h1>Booking request for <%= @negotiation.gig.title %></h1>
+  <% if @negotiation.gig.user.id == current_user.id %>
+    <%= render :partial => 'negotiation_gig', locals: { post: @post } %>
+  <% elsif @negotiation.band.user.id == current_user.id %>
+    <%= render :partial => 'negotiation_band', locals: { post: @post } %>
+  <% else%>
+    <p>You don't have permission to see this booking.</p>
+  <% end%>
 </main>

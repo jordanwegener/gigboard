@@ -1,5 +1,6 @@
 <main role="main">
   <h2><%= @gig.title %></h2>
+  <p>owned by <%= @gig.user.email %></p>
   <ul>
     <li> Location: <%= @gig.location %>  </li>
     <li> Date: <%= @gig.date %></li>
@@ -11,9 +12,15 @@
   <% if current_user %>
     <% if @gig.user_id == current_user.id %>
       <h4>This gig belongs to you</h4>
+      <%= link_to "See negotiation",  negotiation_path(check_user_negotiations_as_gig(@gig)), class: "btn btn-primary" %>
     <% else %>
-      <h4><%= link_to "Make an offer to play this gig", book_gig_path %></h4>
+      <br>
+      <% if check_user_negotiations_as_band(@gig) %>
+        <%= link_to "See negotiation", negotiation_path(check_user_negotiations_as_band(@gig)), method: "get", class: "btn btn-primary" %>
+      <% else %>
+        <%= link_to "Request to book this gig", new_negotiation_path, method: "get", class: "btn btn-primary" %>
+      <% end %>
     <% end %>
   <% end%>
-  <p><%= link_to "Back to Gigs", gigs_path%></p>
+  <%= link_to "Back to Gigs", gigs_path, class: "btn btn-primary"%>
 </main>

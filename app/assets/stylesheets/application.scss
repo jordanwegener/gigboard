@@ -1,2 +1,64 @@
-@import "bootstrap-sprockets";
-@import "bootstrap";
+@import "bootstrap/scss/bootstrap";
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+$white: #ffffff;
+$black: #000000;
+$background: #ffffff;
+$colour1: #3e61a3;
+$colour2: #48d15a;
+$accent1: #fffb00;
+
+body {
+    background: $background;
+    color: $black;
+    font-family: 'Nunito', sans-serif;
+}
+h1,
+h2 {
+    font-weight: bold;
+}
+p {
+    font-size: 16px;
+    color: $black;
+}
+.jumbotron {
+    background: $colour1;
+    color: $white;
+    text-align: center;
+    p {
+        color: $white;
+        font-size: 26px;
+    }
+}
+.link {
+    color: $black;
+}
+.btn-primary {
+    color: $white;
+    border-color: $white;
+    margin-bottom: 5px;
+}
+.btn-sm {
+    background-color: $white;
+    display: inline-block;
+}
+img,
+video,
+audio {
+    margin-top: 20px;
+    max-width: 80%;
+}
+caption {
+    
+    float: left;
+    clear: both;
+    
+}
+.nav-item {
+    color: $white;
+}
+.navbar {
+    color: $white;
+    margin-bottom: 0;
+    background: $colour1;
+}

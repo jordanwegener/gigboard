@@ -1,4 +1,4 @@
-  <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" href="/">GigBoard</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,33 +7,31 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to 'Home', root_path %>
+          <%= link_to 'Home', root_path, class: "nav-link" %>
         </li>
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to 'Add a Gig', new_gig_path %>
+            <%= link_to 'Add a Gig', new_gig_path, class: "nav-link" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Add a Band', new_band_path %>
+            <%= link_to 'Add a Band', new_band_path, class: "nav-link" %>
           </li>
         <% end %>
       </ul>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <a class="nav-link" href="/users/index">User Profile</a>
+            <a class="nav-link" href="/users/index">User Profile (<%= current_user.email %>)</a>
           </li>
         <% end %>
         <li class="nav-item">
           <% if user_signed_in? %>
-            <a class="nav-link" href="/users/sign_out">Sign Out</a>
+            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
           <% else %>
-            <a class="nav-link" href="/users/sign_in">Sign In</a>
+            <%= link_to "Sign In", new_user_session_path, class: "nav-link" %>
           <% end %>
         </li>
       </ul>
     </div>
   </div>
 </nav>
-<br>
-<br>

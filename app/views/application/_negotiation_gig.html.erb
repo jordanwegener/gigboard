@@ -1,0 +1,24 @@
+<h3>The following band has requested to book this gig:</h3>
+<h4><%= @negotiation.band.name %></h4>
+<p>Style: <%= @negotiation.band.style %></p>
+<p>Description: <%= @negotiation.band.description %></p>
+<% if @negotiation.message %>
+  <p>They have left you the following message:</p>
+  <p><%= @negotiation.message %></p>
+<% end %>
+<h4>If you accept you will need to pay <%= number_to_currency(@negotiation.gig.ask_price * 0.1) %> as a deposit and then <%= number_to_currency(@negotiation.ask_price * 0.9) %> upon completion of the gig.</h4>
+<% case @negotiation.status%>
+<% when "pending" %>
+<p>You haven't responded to this booking request yet.</p>
+<%= link_to "Accept booking request", accept_negotiation_path, class: "btn btn-success" %>
+<%= link_to "Reject booking request", reject_negotiation_path, class: "btn btn-danger" %>
+<% when "accepted" %>
+<p>You have accepted this booking request but no deposit has been paid. Please pay the 10% deposit.</p>
+<%= link_to "Pay deposit", pay_negotiation_path, class: "btn btn-primary" %>
+<% when "rejected" %>
+<p>You have rejected this booking request.</p>
+<%= link_to "Back to homepage", destroy_negotiation_path %>
+<% when "paid" %>
+<p>You have accepted this booking request and a deposit has been paid!</p>
+<p>Please contact <%= @negotiation.band.user.email %> to confirm.</p>
+<% end %>

@@ -61,8 +61,6 @@ gem "aws-sdk-s3", "~> 1.94"
 
 gem "stripe", "~> 5.32"
 
-gem "bootstrap-sass"
-
 gem "devise", "~> 4.8"
 
 gem "faker", "~> 2.17"

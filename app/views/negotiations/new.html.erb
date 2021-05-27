@@ -1,19 +1,20 @@
 <main role="main">
-  <%= content_for?(:content) ? yield(:content) : yield %>
-  <h1>Gig Negotiation</h1>
-  <h3>Gig: <%= @gig.title %></h2>
-  <h3>Current ask price: $300</h2>
-  <%= form_with scope: :negotiation, local: true do |form| %>
+  <h1>Send Booking Request</h1>
+  <h3>You are requesting to book <%= @gig.title %></h2>
+  <h4>If accepted you will be paid <%= number_to_currency(@gig.ask_price) %></h4>
+  <p>Please choose a band you'd like to book this gig with</p>
+  <%= form_with model: @negotiation, url:create_negotiation_path, local: true do |form| %>
     <p>
-      <%= form.label :offer_price %><br>
-      <%= form.text_field :offer_price %>
+      <%= form.label :band_id, "Band: " %>
+      <%= form.select(:band_id, @bands.map{|band| [band.name, band.id]}) %>
     </p>
+    <p>Leave a message for the venue - say hi and tell them why they should book you!</p>
     <p>
-      <%= form.label :message %><br>
+      <%= form.label :message, "Message: " %><br>
       <%= form.text_area :message %>
     </p>
     <p>
-      <%= form.submit %>
+      <%= form.submit "Send booking request", class: "btn btn-primary" %>
     </p>
   <% end %>
 </main>

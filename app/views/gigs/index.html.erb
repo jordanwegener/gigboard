@@ -10,8 +10,10 @@
   <h2>Currently listed gigs:</h2>
   <ul>
     <% @gigs.each do |gig| %>
-      <li><%= gig.title %> | Location: <%= gig.location %> | <%= number_to_currency(gig.ask_price) %> <%= link_to 'Show', gig %></li>
+      <div class="well">
+        <li><%= gig.title %> | Location: <%= gig.location %> | <%= number_to_currency(gig.ask_price) %> <%= link_to 'More info', gig, class: "btn btn-primary" %></li>
+      </div>
     <% end %>
   </ul>
-  <%= link_to 'Add a new gig listing', new_gig_path %>
+  <%= link_to 'Add a new gig listing', new_gig_path, class: "btn btn-primary" %>
 </main>
