@@ -25,10 +25,13 @@ Rails.application.routes.draw do
   get "/gigs/index", to: "gigs#index", as: "gigs"
   get "/gigs/new", to: "gigs#new", as: "new_gig"
   post "/gigs/", to: "gigs#create", as: "create_gig"
+  get "/gigs/:id/edit", to: "gigs#edit", as: "edit_gig"
+  patch "/gigs/", to: "gigs#update", as: "update_gig"
   get "/gigs/:id/book", to: "negotiations#new", as: "new_negotiation"
   post "gigs/:id/book", to: "negotiations#create", as: "create_negotiation"
   get "negotiation/:id", to: "negotiations#show", as: "negotiation"
   get "/gigs/:id", to: "gigs#show", as: "gig"
   get "/bands/new", to: "bands#new", as: "new_band"
   get "/bands/:id", to: "bands#show", as: "band"
+  get "/bands/:id/edit", to: "bands#edit", as: "edit_band"
 end

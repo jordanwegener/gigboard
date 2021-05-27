@@ -55,11 +55,13 @@
   <h2>Your Bands</h2>
   <% if @user.bands.length > 0 %>
     <% @user.bands.each do |band| %>
-      <p><strong>Band name:</strong> <%= band.name %></p>
-      <p><strong>Band location:</strong> <%= band.location %></p>
-      <p><strong>Band style:</strong> <%= band.style %></p>
-      <a href="#">Edit this band</a>
-      <p>------------------------------------------</p>
+      <h5><strong>Band name:</strong> <%= band.name %></h5>
+      <ul>
+        <li><strong>Band location:</strong> <%= band.location %></li>
+        <li><strong>Band style:</strong> <%= band.style %></li>
+      </ul>
+      <%= link_to "View  band", band_path(band), class: "btn btn-primary" %>
+      <br>
     <% end %>
   <% else %>
     <p>You have no bands. Would you like to <%= link_to "create one?", new_band_path %></p>

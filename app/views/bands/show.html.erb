@@ -1,0 +1,10 @@
+<h1>Band name: <%= @band.name %></h1>
+<p>Style: <%= @band.style %></p>
+<p>Location: <%= @band.location %></p>
+<p>Description:</p>
+<p><%= @band.description %></p>
+<% if current_user %>
+  <% if @band.user == current_user %>
+    <%= link_to "Edit Band", edit_band_path(@band), class: "btn btn-primary" %>
+  <% end %>
+<% end %>

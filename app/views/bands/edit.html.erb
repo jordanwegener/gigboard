@@ -1,0 +1,25 @@
+<main role="main">
+  <%= content_for?(:content) ? yield(:content) : yield %>
+  <h1>Edit Band</h1>
+  <%= form_with scope: :band, local: true, method: :put do |form| %>
+    <p>
+      <%= form.label :name %><br>
+      <%= form.text_field :name, value: @band.name %>
+    </p>
+    <p>
+      <%= form.label :location %><br>
+      <%= form.text_field :location %>
+    </p>
+    <p>
+      <%= form.label :style %><br>
+      <%= form.text_field :style %>
+    </p>
+    <p>
+      <%= form.label :description %><br>
+      <%= form.text_area :description %>
+    </p>
+    <p>
+      <%= form.submit "Update band" %>
+    </p>
+  <% end %>
+</main>

@@ -19,6 +19,7 @@ class GigsController < ApplicationController
   end
 
   def show
+    @gig = Gig.find_by_id(params[:id])
   end
 
   def new
@@ -34,6 +35,19 @@ class GigsController < ApplicationController
   def book
   end
 
+  def edit
+    @gig = Gig.find_by_id(params[:id])
+  end
+
+  def update
+    @gig = Gig.find_by_id(params[:id])
+    if @gig.update(gig_params)
+      redirect_to @gig
+    else
+      render :edit
+    end
+  end
+
   private
 
   def gig_params
@@ -43,7 +57,6 @@ class GigsController < ApplicationController
   def authorize_gig
     @gig = current_user.gigs.find_by_id(params[:id])
     return if @gig
-
     flash[:alert] = "You lack the permissions to do this. If you think this is an error, please contact an administrator."
     redirect_to gigs_path
   end

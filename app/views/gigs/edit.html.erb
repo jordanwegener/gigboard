@@ -1,0 +1,36 @@
+<main role="main">
+  <h1>Edit Gig Listing</h1>
+  <%= form_with model:@gig, url:create_gig_path, local: true do |form| %>
+    <p>
+      <%= form.label :title %><br>
+      <%= form.text_field :title %>
+    </p>
+    <p>
+      <%= form.label :location %><br>
+      <%= form.text_field :location %>
+    </p>
+    <p>
+      <%= form.label :date %><br>
+      <%= form.text_field :date %>
+    </p>
+    <p>
+      <%= form.label :start_time %><br>
+      <%= form.text_field :start_time %>
+    </p>
+    <p>
+      <%= form.label :end_time %><br>
+      <%= form.text_field :end_time %>
+    </p>
+    <p>
+      <%= form.label :ask_price %><br>
+      <%= form.text_field :ask_price %>
+    </p>
+    <p>
+      <%= form.label :description %><br>
+      <%= form.text_area :description %>
+    </p>
+    <p>
+      <%= form.submit "Update gig", class: "btn btn-primary" %>
+    </p>
+  <% end %>
+</main>

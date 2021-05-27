@@ -15,6 +15,9 @@ class NegotiationsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
   def show
     @negotiation = Negotiation.find(params[:id])
     @gig = @negotiation.gig

@@ -7,28 +7,28 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <%= link_to 'Home', root_path, class: "nav-link" %>
+          <%= button_to 'Home', root_path, method: :get, class: "btn btn-dark" %>
         </li>
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to 'Add a Gig', new_gig_path, class: "nav-link" %>
+            <%= button_to 'Add a Gig', new_gig_path, method: :get, class: "btn btn-dark" %>
           </li>
           <li class="nav-item">
-            <%= link_to 'Add a Band', new_band_path, class: "nav-link" %>
+            <%= button_to 'Add a Band', new_band_path, method: :get, class: "btn btn-dark" %>
           </li>
         <% end %>
       </ul>
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <a class="nav-link" href="/users/index">User Profile (<%= current_user.email %>)</a>
+            <%= button_to "User Profile ", user_path, method: :get, class: "btn btn-dark" %>
           </li>
         <% end %>
         <li class="nav-item">
           <% if user_signed_in? %>
-            <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: "nav-link" %> <!-- not working -->
+            <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-dark" %>
           <% else %>
-            <%= link_to "Sign In", new_user_session_path, class: "nav-link" %>
+            <%= button_to "Sign In", new_user_session_path, method: :get, class: "btn btn-dark" %>
           <% end %>
         </li>
       </ul>

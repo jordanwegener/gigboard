@@ -4,6 +4,7 @@ class BandsController < ApplicationController
   end
 
   def show
+    @band = Band.find(params[:id])
   end
 
   def create
@@ -13,6 +14,13 @@ class BandsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def update
+  end
+
+  def edit
+    @band = Band.find(params[:id])
   end
 
   def new

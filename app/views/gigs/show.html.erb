@@ -12,7 +12,10 @@
   <% if current_user %>
     <% if @gig.user_id == current_user.id %>
       <h4>This gig belongs to you</h4>
-      <%= link_to "See negotiation",  negotiation_path(check_user_negotiations_as_gig(@gig)), class: "btn btn-primary" %>
+      <% if check_user_negotiations_as_gig(@gig)%>
+        <%= link_to "See negotiation",  negotiation_path(check_user_negotiations_as_gig(@gig)), class: "btn btn-primary" %>
+      <% end %>
+      <%= link_to "Edit gig", edit_gig_path, class: "btn btn-primary" %>
     <% else %>
       <br>
       <% if check_user_negotiations_as_band(@gig) %>
