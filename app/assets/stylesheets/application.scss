@@ -15,6 +15,10 @@ body {
 }
 main {
     margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 ul {
     list-style: none;
@@ -68,4 +72,29 @@ caption {
     color: $white;
     margin-bottom: 0;
     background: $colour1;
+}
+.card {
+    margin: 10px;
+    padding: 5px;
+}
+.button-bottom-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 100%;
+}
+.gig-info-card, .gig-title-card {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.gigs-index-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0 20% 0 20%;
 }
