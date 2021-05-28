@@ -1,5 +1,10 @@
+/*
+*= require plyr
+*/
+
 @import "bootstrap/scss/bootstrap";
 @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
 
 $white: #ffffff;
 $black: #000000;
@@ -94,6 +99,16 @@ caption {
     align-items: center;
     justify-content: space-evenly;
     flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0 20% 0 20%;
+}
+
+.content-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
     flex-wrap: wrap;
     width: 100%;
     padding: 0 20% 0 20%;

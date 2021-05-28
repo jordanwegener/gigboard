@@ -8,11 +8,13 @@ class BandsController < ApplicationController
   end
 
   def create
-    @band = current_user.bands.new(band_params)
+    params[:band][:demo] = base64encode(params[:band][:demo]) if params[:band][:demo]
+    @band = Band.new(band_params)
+    @band.user = current_user
     if @band.save
       redirect_to @band
     else
-      render :new
+      render "new"
     end
   end
 
@@ -34,6 +36,6 @@ class BandsController < ApplicationController
   end
 
   def band_params
-    params.require(:band).permit(:name, :location, :style, :description)
+    params.require(:band).permit(:name, :location, :style, :description, :demo)
   end
 end

@@ -1,5 +1,4 @@
 <main role="main">
-  <%= content_for?(:content) ? yield(:content) : yield %>
   <h1>New Band</h1>
   <%= form_with scope: :band, local: true do |form| %>
     <p>
@@ -17,6 +16,9 @@
     <p>
       <%= form.label :description %><br>
       <%= form.text_field :description %>
+    </p>
+    <p>Upload a demo (mp3 format, limit 10MB):<br>
+      <%= form.file_field :demo %><br>
     </p>
     <p>
       <%= form.submit "Add Band" %>

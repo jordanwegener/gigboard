@@ -1,12 +1,20 @@
 <h3>The following band has requested to book this gig:</h3>
-<h4><%= @negotiation.band.name %></h4>
-<p>Style: <%= @negotiation.band.style %></p>
-<p>Description: <%= @negotiation.band.description %></p>
-<% if @negotiation.message %>
-  <p>They have left you the following message:</p>
-  <p><%= @negotiation.message %></p>
+<div class="card">
+  <h4><%= @negotiation.band.name %></h4>
+  <p>Style: <%= @negotiation.band.style %></p>
+  <p>Description: <%= @negotiation.band.description %></p>
+  <% if @negotiation.message %>
+    <h5>They have left you the following message:</h5>
+    <p><%= @negotiation.message %></p>
+    <% if @band.demo %>
+      <h5>And the following audio file:</h5>
+      <audio id="player" controls>
+        <source src="data:audio/mp3;base64,<% user.audio_sample %>" type="audio/mp3">
+      </audio>
+    <% end %>
+  </div>
 <% end %>
-<h4>If you accept you will need to pay <%= number_to_currency(@negotiation.gig.ask_price * 0.1) %> as a deposit and then <%= number_to_currency(@negotiation.ask_price * 0.9) %> upon completion of the gig.</h4>
+<h4>If you accept you will need to pay <%= number_to_currency((@negotiation.gig.ask_price) * 0.2) %> as a deposit and then <%= number_to_currency((@negotiation.gig.ask_price) * 0.8) %> upon completion of the gig.</h4>
 <% case @negotiation.status%>
 <% when "pending" %>
 <p>You haven't responded to this booking request yet.</p>
