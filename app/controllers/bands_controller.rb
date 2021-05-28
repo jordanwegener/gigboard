@@ -1,10 +1,11 @@
 class BandsController < ApplicationController
+  before_action :set_band, only: [:show, :edit, :update, :destroy, :deactivate]
+
   def index
     @bands = Band.all
   end
 
   def show
-    @band = Band.find(params[:id])
   end
 
   def create
@@ -19,10 +20,14 @@ class BandsController < ApplicationController
   end
 
   def update
+    if @band.update(band_params)
+      redirect_to @band
+    else
+      render "edit"
+    end
   end
 
   def edit
-    @band = Band.find(params[:id])
   end
 
   def new
@@ -35,7 +40,20 @@ class BandsController < ApplicationController
     redirect_to bands_path
   end
 
+  private
+
   def band_params
     params.require(:band).permit(:name, :location, :style, :description, :demo)
+  end
+
+  def authorize_band
+    @band = current_user.bands.find_by_id(params[:id])
+    return if @band
+    flash[:alert] = "You lack the permissions to do this. If you think this is an error, please contact an administrator."
+    redirect_to bands_path
+  end
+
+  def set_band
+    @band = Band.find(params[:id])
   end
 end

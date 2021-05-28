@@ -1,0 +1,21 @@
+<main role="main" class="main-center">
+  <h1>Booking Requests</h1>
+  <h2><%= @gig.title %></h2>
+  <% if @negotiations.length > 1 %>
+    <h3>The following bands have requested to book this gig:</h3>
+  <% else %>
+    <h3>The following band has requested to book this gig:</h3>
+  <% end %>
+  <% @negotiations.each do |negotiation| %>
+    <div class="card limit-width">
+      <h4><%= negotiation.band.name %></h4>
+      <p>Style: <%= negotiation.band.style %></p>
+      <hr>
+      <% if negotiation.band.demo %>
+        <h5>And here's their demo:</h5>
+        <audio src="<%= negotiation.band.demo %>" type="audio/mp3" controls>Can't play audio.</audio>
+      <% end %>
+      <%= button_to "See more and accept/reject", negotiation_path(negotiation.id), method: :get, class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</main>

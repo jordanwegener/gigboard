@@ -7,14 +7,14 @@
     <hr>
     <% if @negotiation.message %>
       <h5>A message from the band:</h5>
-      <p><%= @negotiation.message %></p>
-      <% if @negotiation.band.demo %>
-        <h5>And here's their demo:</h5>
-        <audio src="<%= @negotiation.band.demo %>" type="audio/mp3" controls>Can't play audio.</audio>
-      <% end %>
-    </div>
-  <% end %>
-  <h4>If you accept you will need to pay <%= number_to_currency((@negotiation.gig.ask_price) * 0.2) %> as a deposit and then <%= number_to_currency((@negotiation.gig.ask_price) * 0.8) %> upon completion of the gig.</h4>
+      <p class="card"><%= @negotiation.message %></p>
+    <% end %>
+    <% if @negotiation.band.demo %>
+      <h5>And here's their demo:</h5>
+      <audio src="<%= @negotiation.band.demo %>" type="audio/mp3" controls style="width: 100%"%>Can't play audio.</audio>
+    <% end %>
+  </div>
+  <h4>If you accept you will need to pay a <%= number_to_currency((@negotiation.gig.ask_price) * 0.2) %> deposit and then <%= number_to_currency((@negotiation.gig.ask_price) * 0.8) %> upon completion of the gig.</h4>
   <% case @negotiation.status%>
   <% when "pending" %>
   <p>You haven't responded to this booking request yet.</p>

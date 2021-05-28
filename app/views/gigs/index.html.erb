@@ -1,13 +1,12 @@
 <main role="main" class="main-center">
   <h1>Welcome to GigBoard!</h1>
-  <h3>Search for Gigs</h3>
+  <h4>Search for Gigs:</h4>
   <%= form_tag(gigs_path, method: :get) do %>
     <%= text_field_tag(:search, params[:search]) %>
     <%= submit_tag "Search" %>
   <% end %>
   <br>
   <% if @gigs.length > 0 %>
-    <h2>Currently listed gigs:</h2>
     <div class="gigs-index-container">
       <% @gigs.each do |gig| %>
         <article class="card" style="width: 400px;  min-height: 150px">

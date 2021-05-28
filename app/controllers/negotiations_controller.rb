@@ -1,5 +1,5 @@
 class NegotiationsController < ApplicationController
-  before_action :set_negotiation, except: [:new, :create]
+  before_action :set_negotiation, except: [:new, :create, :index]
 
   def new
     @gig = Gig.find(params[:id])
@@ -17,16 +17,20 @@ class NegotiationsController < ApplicationController
     end
   end
 
-  def deactivate_gig
-    @negotiation.update(active: false)
+  def deactivate(type)
+    @negotiation.update(active: false) if type == "gig"
+    @negotiation.update(active_band: false) if type == "band"
+    @negotiation.destroy unless @negotiation.active || @negotiation.active_band
     flash.notice = "Booking request has been removed."
     redirect_to gigs_path
   end
 
+  def deactivate_gig
+    deactivate("gig")
+  end
+
   def deactivate_band
-    @negotiation.update(active_band: false)
-    flash.notice = "Booking request has been removed."
-    redirect_to gigs_path
+    deactivate("band")
   end
 
   def accept
@@ -37,26 +41,30 @@ class NegotiationsController < ApplicationController
       redirect_to negotiation_path
       flash.alert = "Something went wrong. Please try again and if the problem persists contact an administrator."
     end
-    puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    puts @negotiation.inspect
   end
 
   def reject
-    if @negotiation.update(status: "rejected", active: false)
+    if @negotiation.update(status: "rejected")
       redirect_to negotiation_path
       flash.notice = "Booking request rejected."
     else
       redirect_to negotiation_path
       flash.alert = "Something went wrong. Please try again and if the problem persists contact an administrator."
     end
-    puts "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-    puts @negotiation.inspect
   end
 
   def edit
   end
 
   def pay
+  end
+
+  def index
+    @negotiations = []
+    @gig = Gig.find(params[:gig_id])
+    @gig.negotiations.each do |negotiation|
+      @negotiations << negotiation if negotiation.active && negotiation.active_band
+    end
   end
 
   def show

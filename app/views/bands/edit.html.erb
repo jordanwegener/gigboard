@@ -1,25 +1,30 @@
-<main role="main">
-  <%= content_for?(:content) ? yield(:content) : yield %>
+<main role="main" class="main-center">
   <h1>Edit Band</h1>
-  <%= form_with model: @band, local: true, method: :put do |form| %>
-    <p>
-      <%= form.label :name %><br>
-      <%= form.text_field :name, value: @band.name %>
-    </p>
-    <p>
-      <%= form.label :location %><br>
-      <%= form.text_field :location %>
-    </p>
-    <p>
-      <%= form.label :style %><br>
-      <%= form.text_field :style %>
-    </p>
-    <p>
-      <%= form.label :description %><br>
-      <%= form.text_area :description %>
-    </p>
-    <p>
-      <%= form.submit "Update band", class: "btn btn-primary" %>
-    </p>
-  <% end %>
+  <div class="card">
+    <%= form_with model: @band, local: true, method: :put do |form| %>
+      <p>
+        <%= form.label :name %><br>
+        <%= form.text_field :name, value: @band.name %>
+      </p>
+      <p>
+        <%= form.label :location %><br>
+        <%= form.text_field :location %>
+      </p>
+      <p>
+        <%= form.label :style %><br>
+        <%= form.text_field :style %>
+      </p>
+      <p>
+        <%= form.label :description %><br>
+        <%= form.text_area :description %>
+      </p>
+      <p>Upload a demo<br>
+        (mp3 format, limit 10MB):<br>
+        <%= form.file_field :demo %><br>
+      </p>
+      <p>
+        <%= form.submit "Update band", class: "btn btn-primary" %>
+      </p>
+    <% end %>
+  </div>
 </main>

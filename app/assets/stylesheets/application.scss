@@ -103,7 +103,7 @@ caption {
     column-gap: 20px;
     width: 100%;
 }
-.gig-info-card, .gig-title-card {
+.gig-info, .gig-title {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -131,4 +131,7 @@ caption {
 }
 .center-container {
     text-align: center;
+}
+.limit-width {
+    max-width: 600px;
 }

@@ -20,7 +20,7 @@
     <% if current_user %>
       <% if @gig.user_id == current_user.id %>
         <% if check_user_negotiations_as_gig(@gig)%>
-          <%= link_to "See negotiations",  negotiation_path(check_user_negotiations_as_gig(@gig)), class: "btn btn-primary" %>
+          <%= link_to "See negotiations",  negotiations_path(@gig), class: "btn btn-primary" %>
         <% end %>
         <%= link_to "Edit gig", edit_gig_path, class: "btn btn-primary" %>
       <% else %>

@@ -40,7 +40,7 @@ class GigsController < ApplicationController
     if @gig.update(gig_params)
       redirect_to @gig
     else
-      render "new"
+      render "edit"
     end
   end
 

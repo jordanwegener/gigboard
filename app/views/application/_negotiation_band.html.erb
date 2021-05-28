@@ -2,12 +2,21 @@
 <% case @negotiation.status%>
 <% when "pending" %>
 <p>The organiser of this gig hasn't responded to your booking request yet.</p>
+<div class="button-row">
+  <%= button_to "Back to Gigs", gigs_path, method: :get, class: "btn btn-primary" %>
+</div>
 <% when "accepted" %>
 <p>Your booking request has been <strong>accepted</strong> but no deposit has been paid.</p>
+<div class="button-row">
+  <%= button_to "Back to Gigs", gigs_path, method: :get, class: "btn btn-primary" %>
+</div>
 <% when "rejected" %>
 <p>Sorry, your booking request has been rejected.</p>
-<%= button_to "Remove booking request", deactivate_negotiation_band_path, method: :delete, class: "btn  btn-danger" %>
-<% when "paid" %>
+<div class="button-row">
+  <%= button_to "Remove booking request", deactivate_negotiation_band_path, method: :delete, class: "btn  btn-danger" %>
+  <% when "paid" %>
+  <%= button_to "Back to Gigs", gigs_path, method: :get, class: "btn btn-primary" %>
+</div>
 <p>Your booking request has been <strong>accepted</strong> and a deposit has been paid!</p>
 <p>Please contact <%= @negotiation.gig.user.email %> to confirm.</p>
 <% end %>

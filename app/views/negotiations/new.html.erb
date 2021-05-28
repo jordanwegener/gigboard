@@ -1,20 +1,26 @@
-<main role="main">
+<main role="main" class="main-center">
   <h1>Send Booking Request</h1>
-  <h3>You are requesting to book <%= @gig.title %></h2>
-  <h4>If accepted you will be paid <%= number_to_currency(@gig.ask_price) %></h4>
-  <p>Please choose a band you'd like to book this gig with</p>
-  <%= form_with model: @negotiation, url:create_negotiation_path, local: true do |form| %>
-    <p>
-      <%= form.label :band_id, "Band: " %>
-      <%= form.select(:band_id, @bands.map{|band| [band.name, band.id]}) %>
-    </p>
-    <p>Leave a message for the venue - say hi and tell them why they should book you!</p>
-    <p>
-      <%= form.label :message, "Message: " %><br>
-      <%= form.text_area :message %>
-    </p>
-    <p>
-      <%= form.submit "Send booking request", class: "btn btn-primary" %>
-    </p>
-  <% end %>
+  <div class="card card-center">
+    <h3>You are requesting to book <strong><%= @gig.title %></strong></h2>
+    <h4>If accepted you will be paid <strong><%= number_to_currency(@gig.ask_price) %></strong></h4>
+    <div class="card card-negotiation">
+      <p>Please choose a band you'd like to book this gig with</p>
+      <%= form_with model: @negotiation, url:create_negotiation_path, local: true do |form| %>
+        <p>
+          <%= form.label :band_id, "Band: " %>
+          <%= form.select(:band_id, @bands.map{|band| [band.name, band.id]}) %>
+        </p>
+        <p>Leave a message for the gig organiser - say hi and tell them why they should book you!</p>
+        <p>
+          <%= form.label :message, "Message: " %><br>
+          <%= form.text_area :message %>
+        </p>
+      </div>
+      <div class="button-bottom-right">
+        <p>
+          <%= form.submit "Send booking request", class: "btn btn-primary" %>
+        </p>
+      </div>
+    <% end %>
+  </div>
 </main>

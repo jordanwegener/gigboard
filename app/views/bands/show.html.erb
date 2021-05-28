@@ -2,14 +2,15 @@
   <div class = "content-container">
     <h1>View Band</h1>
     <div class="card">
-      <h4>Band name: <%= @band.name %></h4>
-      <p>Style: <%= @band.style %></p>
-      <p>Location: <%= @band.location %></p>
-      <p>Description:</p>
+      <h4><strong>Band name:</strong> <%= @band.name %></h4>
+      <p><strong>Style:</strong> <%= @band.style %></p>
+      <p><strong>Location:</strong> <%= @band.location %></p>
+      <p><strong>Description:</strong></p>
       <p><%= @band.description %></p>
+      <hr>
       <% if @band.demo %>
-        <h5>Band demo:</h5>
-        <audio src="<%= @band.demo %>" type="audio/mp3" controls>Can't play audio.</audio>
+        <h5><strong>Band demo:</strong></h5>
+        <audio src="<%= @band.demo %>" type="audio/mp3" controls style="width: 100%"%>Can't play audio.</audio>
       <% end %>
     </div>
     <% if current_user && @band.user == current_user %>

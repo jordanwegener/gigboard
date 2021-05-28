@@ -21,7 +21,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= button_to "User Profile ", user_path, method: :get, class: "btn btn-dark" %>
+            <%= button_to "User Profile (#{current_user.email}) ", user_path, method: :get, class: "btn btn-dark" %>
           </li>
         <% end %>
         <li class="nav-item">
