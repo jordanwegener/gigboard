@@ -4,7 +4,7 @@ module GigsHelper
     current_user.bands.each do |band|
       return nil unless band.negotiations
       band.negotiations.each do |negotiation|
-        if negotiation.gig_id == gig.id
+        if negotiation.gig_id == gig.id && negotiation.active_band == true
           return negotiation.id
           break
         end
@@ -18,7 +18,7 @@ module GigsHelper
     current_user.gigs.each do |gig|
       return nil unless gig.negotiations
       gig.negotiations.each do |negotiation|
-        if negotiation.gig_id == gig.id
+        if negotiation.gig_id == gig.id && negotiation.active == true
           return negotiation.id
           break
         end

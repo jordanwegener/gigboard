@@ -16,6 +16,8 @@ body {
 }
 main {
     margin: 20px;
+}
+.main-center {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,6 +79,9 @@ caption {
     margin: 10px;
     padding: 10px;
 }
+.card-center {
+    text-align: center;
+}
 .card-user-profile {
     min-width: 50%;
     text-align: center;
@@ -113,13 +118,17 @@ caption {
     width: 100%;
     padding: 0 20% 0 20%;
 }
-
+.card-negotiation {
+    text-align: left;
+}
 .content-container {
     display: flex;
-    align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
     flex-wrap: wrap;
     width: 100%;
     padding: 0 20% 0 20%;
+}
+.center-container {
+    text-align: center;
 }

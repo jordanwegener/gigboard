@@ -1,5 +1,4 @@
-<main role="main">
-  <%= content_for?(:content) ? yield(:content) : yield %>
+<main role="main" class="main-center">
   <h1>Welcome to GigBoard!</h1>
   <h3>Search for Gigs</h3>
   <%= form_tag(gigs_path, method: :get) do %>
@@ -12,10 +11,10 @@
     <div class="gigs-index-container">
       <% @gigs.each do |gig| %>
         <article class="card" style="width: 400px;  min-height: 150px">
-          <div class="gig-title-card">
-            <h5 class="card-title"><%= gig.title %></h5>
+          <div class="gig-title">
+            <h4 class="card-title"><%= gig.title %></h4>
           </div>
-          <div class="gig-info-card">
+          <div class="gig-info">
             <p class="card-subtitle">Location: <%= gig.location %> <br>
               Ask price: <%= number_to_currency(gig.ask_price) %></p>
           </div>
@@ -23,8 +22,9 @@
             <%= button_to 'More info', gig, method: :get, class: "btn btn-primary" %>
           </article>
         <% end %>
-        <div class="button-bottom-right">
-          <%= link_to 'Add a new gig listing', new_gig_path, class: "btn btn-primary" %>
+        <div class="button-row">
+          <%= button_to 'Add a new gig listing', new_gig_path, method: :get, class: "btn btn-primary" %>
+          <%= button_to 'Back to top', gigs_path, method: :get, class: "btn btn-primary" %>
         </div>
       </div>
     </div>
