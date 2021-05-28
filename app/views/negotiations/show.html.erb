@@ -1,10 +1,12 @@
 <main role="main">
-  <h1>Booking request for <%= @negotiation.gig.title %></h1>
-  <% if @negotiation.gig.user.id == current_user.id %>
-    <%= render :partial => 'negotiation_gig', locals: { post: @post } %>
-  <% elsif @negotiation.band.user.id == current_user.id %>
-    <%= render :partial => 'negotiation_band', locals: { post: @post } %>
-  <% else%>
-    <p>You don't have permission to see this booking.</p>
-  <% end%>
+  <div class="card card-show-negotiation">
+    <h1>Booking request for <%= @negotiation.gig.title %></h1>
+    <% if @negotiation.gig.user.id == current_user.id %>
+      <%= render :partial => 'negotiation_gig', locals: { post: @post } %>
+    <% elsif @negotiation.band.user.id == current_user.id %>
+      <%= render :partial => 'negotiation_band', locals: { post: @post } %>
+    <% else%>
+      <p>You don't have permission to see this booking.</p>
+    <% end%>
+  </div>
 </main>

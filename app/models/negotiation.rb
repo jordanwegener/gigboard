@@ -5,7 +5,9 @@ class Negotiation < ApplicationRecord
   enum status: { pending: 0, accepted: 1, rejected: 2, paid: 3 }
 
   def set_default_status
-    self.active = true
-    self.status = "pending"
+    if self.new_record?
+      self.active = true
+      self.status = "pending"
+    end
   end
 end

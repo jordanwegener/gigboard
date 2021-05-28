@@ -3,11 +3,12 @@
   <h4><%= @negotiation.band.name %></h4>
   <p>Style: <%= @negotiation.band.style %></p>
   <p>Description: <%= @negotiation.band.description %></p>
+  <hr>
   <% if @negotiation.message %>
     <h5>They have left you the following message:</h5>
     <p><%= @negotiation.message %></p>
     <% if @negotiation.band.demo %>
-      <h5>Band demo:</h5>
+      <h5>And here's their demo:</h5>
       <audio src="<%= @negotiation.band.demo %>" type="audio/mp3" controls>Can't play audio.</audio>
     <% end %>
   </div>
@@ -16,14 +17,20 @@
 <% case @negotiation.status%>
 <% when "pending" %>
 <p>You haven't responded to this booking request yet.</p>
-<%= link_to "Accept booking request", accept_negotiation_path, class: "btn btn-success" %>
-<%= link_to "Reject booking request", reject_negotiation_path, class: "btn btn-danger" %>
+<div class="button-row">
+  <%= button_to "Accept booking request", accept_negotiation_path, method: :patch, class: "btn btn-success" %>
+  <%= button_to "Reject booking request", reject_negotiation_path, method: :patch, class: "btn btn-danger" %>
+</div>
 <% when "accepted" %>
 <p>You have accepted this booking request but no deposit has been paid. Please pay the 10% deposit.</p>
-<%= link_to "Pay deposit", pay_negotiation_path, class: "btn btn-primary" %>
+<div class="button-row">
+  <%= link_to "Pay deposit", pay_negotiation_path, class: "btn btn-primary" %>
+</div>
 <% when "rejected" %>
 <p>You have rejected this booking request.</p>
-<%= link_to "Back to homepage", destroy_negotiation_path %>
+<div class="button-row">
+  <%= button_to "Back to homepage", destroy_negotiation_path, method: :delete, class: "btn btn-primary" %>
+</div>
 <% when "paid" %>
 <p>You have accepted this booking request and a deposit has been paid!</p>
 <p>Please contact <%= @negotiation.band.user.email %> to confirm.</p>

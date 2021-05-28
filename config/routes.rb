@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   #   delete "/users", to: "devise/registrations#destroy"
   #   post "/users", to: "devise/registrations#create"
   # end
+  # gigs paths
   get "/users/index", to: "users#index", as: "user"
   get "/gigs/index", to: "gigs#index", as: "gigs"
   get "/gigs/new", to: "gigs#new", as: "new_gig"
@@ -29,12 +30,16 @@ Rails.application.routes.draw do
   patch "/gigs/", to: "gigs#update", as: "update_gig"
   get "/gigs/:id/book", to: "negotiations#new", as: "new_negotiation"
   post "gigs/:id/book", to: "negotiations#create", as: "create_negotiation"
-  get "negotiation/:id", to: "negotiations#show", as: "negotiation"
   get "/gigs/:id", to: "gigs#show", as: "gig"
+  # bands paths
   get "/bands/new", to: "bands#new", as: "new_band"
   post "/bands/new", to: "bands#create", as: "create_band"
   get "/bands/:id", to: "bands#show", as: "band"
   get "/bands/:id/edit", to: "bands#edit", as: "edit_band"
-  post "/negotiation/:id", to: "negotiations#accept", as: "accept_negotiation"
-  post "/negotiation/:id", to: "negotiations#reject", as: "reject_negotiation"
+  # negotiations paths
+  get "negotiation/:id", to: "negotiations#show", as: "negotiation"
+  patch "/negotiation/:id/accept", to: "negotiations#accept", as: "accept_negotiation"
+  patch "/negotiation/:id/reject", to: "negotiations#reject", as: "reject_negotiation"
+  delete "/negotiation/:id/", to: "negotiations#destroy", as: "destroy_negotiation"
+  get "negotiation/:id/pay", to: "negotiations#pay", as: "pay_negotiation"
 end

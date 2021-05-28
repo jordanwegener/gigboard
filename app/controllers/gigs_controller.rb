@@ -1,6 +1,6 @@
 class GigsController < ApplicationController
   # before_action :authenticate_user, only: [:new, :edit]
-  before_action :set_gig, only: [:show]
+  before_action :set_gig, only: [:show, :edit, :update]
   before_action :authorize_gig, only: [:edit, :update, :destroy, :deactivate]
 
   def index
@@ -18,7 +18,6 @@ class GigsController < ApplicationController
   end
 
   def show
-    @gig = Gig.find_by_id(params[:id])
   end
 
   def new
@@ -35,11 +34,9 @@ class GigsController < ApplicationController
   end
 
   def edit
-    @gig = Gig.find_by_id(params[:id])
   end
 
   def update
-    @gig = Gig.find_by_id(params[:id])
     if @gig.update(gig_params)
       redirect_to @gig
     else

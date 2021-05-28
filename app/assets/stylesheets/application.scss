@@ -23,7 +23,6 @@ main {
 }
 ul {
     list-style: none;
-    text-indent: 0;
 }
 h1,
 h2 {
@@ -76,12 +75,27 @@ caption {
 }
 .card {
     margin: 10px;
-    padding: 5px;
+    padding: 10px;
+}
+.card-user-profile {
+    min-width: 50%;
+    text-align: center;
+}
+.card-user-profile-child {
+    text-align: left;
 }
 .button-bottom-right {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    width: 100%;
+}
+.button-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
     width: 100%;
 }
 .gig-info-card, .gig-title-card {

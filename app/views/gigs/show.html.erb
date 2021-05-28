@@ -1,29 +1,35 @@
 <main role="main">
   <h2><%= @gig.title %></h2>
-  <p>owned by <%= @gig.user.email %></p>
-  <ul>
-    <li> Location: <%= @gig.location %>  </li>
-    <li> Date: <%= @gig.date %></li>
-    <li> Start and end time: <%= @gig.start_time %> - <%= @gig.end_time %> </li>
-    <li> Ask price: <%= number_to_currency(@gig.ask_price) %></li>
-  </ul>
-  <h3>Description</h3>
-  <%= @gig.description %>
-  <% if current_user %>
-    <% if @gig.user_id == current_user.id %>
-      <h4>This gig belongs to you</h4>
-      <% if check_user_negotiations_as_gig(@gig)%>
-        <%= link_to "See negotiation",  negotiation_path(check_user_negotiations_as_gig(@gig)), class: "btn btn-primary" %>
-      <% end %>
-      <%= link_to "Edit gig", edit_gig_path, class: "btn btn-primary" %>
-    <% else %>
-      <br>
-      <% if check_user_negotiations_as_band(@gig) %>
-        <%= link_to "See negotiation", negotiation_path(check_user_negotiations_as_band(@gig)), method: "get", class: "btn btn-primary" %>
+  <div class="card">
+    <h4>Gig info:</h4>
+    <ul>
+      <li> Location: <%= @gig.location %>  </li>
+      <li> Date: <%= @gig.date %></li>
+      <li> Start and end time: <%= @gig.start_time %> - <%= @gig.end_time %> </li>
+      <li> Ask price: <%= number_to_currency(@gig.ask_price) %></li>
+    </ul>
+    <h4>Description:</h4>
+    <%= @gig.description %>
+  </div>
+  <% if current_user  && check_user_negotiations_as_gig(@gig) %>
+    <h4>This gig belongs to you</h4>
+  <% end %>
+  <div class = "button-row">
+    <% if current_user %>
+      <% if @gig.user_id == current_user.id %>
+        <% if check_user_negotiations_as_gig(@gig)%>
+          <%= link_to "See negotiations",  negotiation_path(check_user_negotiations_as_gig(@gig)), class: "btn btn-primary" %>
+        <% end %>
+        <%= link_to "Edit gig", edit_gig_path, class: "btn btn-primary" %>
       <% else %>
-        <%= link_to "Request to book this gig", new_negotiation_path, method: "get", class: "btn btn-primary" %>
+        <br>
+        <% if check_user_negotiations_as_band(@gig) %>
+          <%= link_to "See negotiation", negotiation_path(check_user_negotiations_as_band(@gig)), method: "get", class: "btn btn-primary" %>
+        <% else %>
+          <%= link_to "Request to book this gig", new_negotiation_path, method: "get", class: "btn btn-primary" %>
+        <% end %>
       <% end %>
-    <% end %>
-  <% end%>
-  <%= link_to "Back to Gigs", gigs_path, class: "btn btn-primary"%>
+    <% end%>
+    <%= link_to "Back to Gigs", gigs_path, class: "btn btn-primary"%>
+  </div>
 </main>
