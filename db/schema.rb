@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_28_041200) do
+ActiveRecord::Schema.define(version: 2021_05_28_093807) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2021_05_28_041200) do
     t.bigint "gig_id", null: false
     t.text "message"
     t.integer "status"
+    t.boolean "active_band"
     t.index ["band_id"], name: "index_negotiations_on_band_id"
     t.index ["gig_id"], name: "index_negotiations_on_gig_id"
   end

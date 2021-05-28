@@ -9,17 +9,28 @@
     <h2>Your Bookings (as band)</h2>
     <% if @user_negotiations_as_band.length > 0 %>
       <% @user_negotiations_as_band.each do |negotiation| %>
-        <article class="card card-user-profile-child">
-          <h5><strong>Gig title:</strong> <%= negotiation.gig.title %></h5>
-          <ul>
-            <li><strong>Gig location:</strong> <%= negotiation.gig.location %></li>
-            <li><strong>Gig date:</strong> <%= negotiation.gig.date %></li>
-            <li><strong>Gig duration:</strong> <%= negotiation.gig.start_time %> to <%= negotiation.gig.end_time %></li>
-            <li><strong>Ask price:</strong> <%= number_to_currency(negotiation.gig.ask_price) %></li>
-            <li><strong>Status:</strong> <%= negotiation.status %></li>
-          </ul>
-          <%= link_to "View booking", negotiation_path(negotiation), class: "btn btn-primary" %>
-        </article>
+        <% if negotiation.active_band == true %>
+          <article class="card card-user-profile-child">
+            <h5><strong>Gig title:</strong> <%= negotiation.gig.title %></h5>
+            <ul>
+              <li><strong>Gig location:</strong> <%= negotiation.gig.location %></li>
+              <li><strong>Gig date:</strong> <%= negotiation.gig.date %></li>
+              <li><strong>Gig duration:</strong> <%= negotiation.gig.start_time %> to <%= negotiation.gig.end_time %></li>
+              <li><strong>Ask price:</strong> <%= number_to_currency(negotiation.gig.ask_price) %></li>
+              <li><strong>Status:</strong> <%= negotiation.status %></li>
+            </ul>
+            <% if negotiation.status == "paid" %>
+              <p>A deposit has been paid for this booking! Contact <%= negotiation.band.user.email %> to discuss details.</p>
+            <% elsif negotiation.status == "accepted" %>
+              <p>The gig organiser has accepted your booking request but hasn't yet paid.</p>
+            <% elsif negotiation.status == "pending" %>
+              <p>The gig organiser hasn't accepted your booking request yet.</p>
+            <% elsif negotiation.status == "rejected" %>
+              <p>The gig organiser has rejected your booking request.</p>
+            <% end %>
+            <%= link_to "View booking", negotiation_path(negotiation), class: "btn btn-primary" %>
+          </article>
+        <% end %>
       <% end %>
     <% else %>
       <p>You have no bookings as a band.</p>
@@ -32,13 +43,17 @@
         <article class="card card-user-profile-child">
           <h5><strong>Gig title:</strong> <%= negotiation.gig.title %></h5>
           <ul>
-            <li><strong>Gig location:</strong> <%= negotiation.gig.location %></li>
-            <li><strong>Gig date:</strong> <%= negotiation.gig.date %></li>
-            <li><strong>Gig duration:</strong> <%= negotiation.gig.start_time %> to <%= negotiation.gig.end_time %></li>
+            <li><strong>Gig date:</strong><%= negotiation.gig.date %></li>
             <li><strong>Ask price:</strong> <%= number_to_currency(negotiation.gig.ask_price) %></li>
-            <li><strong>Status:</strong> <%= negotiation.status %></li>
           </ul>
-          <%= link_to "View booking", negotiation_path(negotiation), class: "btn btn-primary" %>
+          <hr>
+          <p>The following band has requested to book this gig:</p>
+          <ul>
+            <li><strong>Band name:</strong> <%= negotiation.band.name %></li>
+            <li><strong>Style:</strong> <%= negotiation.band.style %></li>
+            <li><strong>Booking status:</strong> <%= negotiation.status %></li>
+          </ul>
+          <%= link_to "View booking to accept or reject", negotiation_path(negotiation), class: "btn btn-primary" %>
         </article>
       <% end %>
     <% else %>

@@ -7,6 +7,7 @@ class Negotiation < ApplicationRecord
   def set_default_status
     if self.new_record?
       self.active = true
+      self.active_band = true
       self.status = "pending"
     end
   end

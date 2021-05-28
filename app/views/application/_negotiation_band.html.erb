@@ -6,7 +6,7 @@
 <p>Your booking request has been <strong>accepted</strong> but no deposit has been paid.</p>
 <% when "rejected" %>
 <p>Sorry, your booking request has been rejected.</p>
-<%= link_to "Back to homepage", destroy_negotiation_path %>
+<%= button_to "Remove booking request", deactivate_negotiation_band_path, method: :delete, class: "btn  btn-danger" %>
 <% when "paid" %>
 <p>Your booking request has been <strong>accepted</strong> and a deposit has been paid!</p>
 <p>Please contact <%= @negotiation.gig.user.email %> to confirm.</p>

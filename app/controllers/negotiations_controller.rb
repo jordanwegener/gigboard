@@ -1,12 +1,14 @@
 class NegotiationsController < ApplicationController
-  before_action :set_negotiation
+  before_action :set_negotiation, except: [:new, :create]
 
   def new
+    @gig = Gig.find(params[:id])
     @negotiation = Negotiation.new
     @bands = current_user.bands
   end
 
   def create
+    @gig = Gig.find(params[:id])
     @negotiation = @gig.negotiations.new(negotiation_params)
     if @negotiation.save
       redirect_to negotiation_path(@negotiation)
@@ -15,8 +17,14 @@ class NegotiationsController < ApplicationController
     end
   end
 
-  def destroy
-    @negotiation.destroy
+  def deactivate_gig
+    @negotiation.update(active: false)
+    flash.notice = "Booking request has been removed."
+    redirect_to gigs_path
+  end
+
+  def deactivate_band
+    @negotiation.update(active_band: false)
     flash.notice = "Booking request has been removed."
     redirect_to gigs_path
   end

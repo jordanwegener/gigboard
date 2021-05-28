@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   get "negotiation/:id", to: "negotiations#show", as: "negotiation"
   patch "/negotiation/:id/accept", to: "negotiations#accept", as: "accept_negotiation"
   patch "/negotiation/:id/reject", to: "negotiations#reject", as: "reject_negotiation"
-  delete "/negotiation/:id/", to: "negotiations#destroy", as: "destroy_negotiation"
+  delete "/negotiation/:id/deactivate_gig", to: "negotiations#deactivate_gig", as: "deactivate_negotiation_gig"
+  delete "/negotiation/:id/deactivate_band", to: "negotiations#deactivate_band", as: "deactivate_negotiation_band"
   get "negotiation/:id/pay", to: "negotiations#pay", as: "pay_negotiation"
 end
