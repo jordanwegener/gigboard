@@ -66,3 +66,5 @@ gem "devise", "~> 4.8"
 gem "faker", "~> 2.17"
 
 gem "cancancan", "~> 3.2"
+
+gem "base64"

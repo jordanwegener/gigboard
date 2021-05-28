@@ -1,5 +1,4 @@
 <main role="main">
-  <h1>show negotitation path</h1>
   <h1>Booking request for <%= @negotiation.gig.title %></h1>
   <% if @negotiation.gig.user.id == current_user.id %>
     <%= render :partial => 'negotiation_gig', locals: { post: @post } %>

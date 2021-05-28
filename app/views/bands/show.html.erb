@@ -1,10 +1,19 @@
-<h1>Band name: <%= @band.name %></h1>
-<p>Style: <%= @band.style %></p>
-<p>Location: <%= @band.location %></p>
-<p>Description:</p>
-<p><%= @band.description %></p>
-<% if current_user %>
-  <% if @band.user == current_user %>
-    <%= link_to "Edit Band", edit_band_path(@band), class: "btn btn-primary" %>
+<div class = "content-container">
+  <h1>View Band</h1>
+  <div class="card">
+    <h4>Band name: <%= @band.name %></h4>
+    <p>Style: <%= @band.style %></p>
+    <p>Location: <%= @band.location %></p>
+    <p>Description:</p>
+    <p><%= @band.description %></p>
+    <% if @band.demo %>
+      <h5>Band demo:</h5>
+      <audio src="<%= @band.demo %>" type="audio/mp3" controls>Can't play audio.</audio>
+    <% end %>
+  </div>
+  <% if current_user && @band.user == current_user %>
+    <div class="button-bottom-right">
+      <%= link_to "Edit Band", edit_band_path(@band), class: "btn btn-primary" %>
+    </div>
   <% end %>
-<% end %>
+</div>

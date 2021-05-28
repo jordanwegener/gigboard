@@ -20,7 +20,7 @@
               Ask price: <%= number_to_currency(gig.ask_price) %></p>
           </div>
           <div class="button-bottom-right">
-            <%= button_to 'More info', gig, method: :post, class: "btn btn-primary" %>
+            <%= button_to 'More info', gig, method: :get, class: "btn btn-primary" %>
           </article>
         <% end %>
         <div class="button-bottom-right">

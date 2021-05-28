@@ -8,7 +8,6 @@ class GigsController < ApplicationController
   end
 
   def create
-    # @gig = current_user.gigs.new(gig_params)
     @gig = Gig.new(gig_params)
     @gig.user = current_user
     if @gig.save

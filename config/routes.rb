@@ -32,6 +32,9 @@ Rails.application.routes.draw do
   get "negotiation/:id", to: "negotiations#show", as: "negotiation"
   get "/gigs/:id", to: "gigs#show", as: "gig"
   get "/bands/new", to: "bands#new", as: "new_band"
+  post "/bands/new", to: "bands#create", as: "create_band"
   get "/bands/:id", to: "bands#show", as: "band"
   get "/bands/:id/edit", to: "bands#edit", as: "edit_band"
+  post "/negotiation/:id", to: "negotiations#accept", as: "accept_negotiation"
+  post "/negotiation/:id", to: "negotiations#reject", as: "reject_negotiation"
 end
