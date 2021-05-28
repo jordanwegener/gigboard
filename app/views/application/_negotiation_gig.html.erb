@@ -21,16 +21,19 @@
   <div class="button-row">
     <%= button_to "Accept booking request", accept_negotiation_path, method: :patch, class: "btn btn-success" %>
     <%= button_to "Reject booking request", reject_negotiation_path, method: :patch, class: "btn btn-danger" %>
+    <%= button_to "Back to negotiations", negotiations_path(@gig), method: :get, class: "btn btn-primary" %>
   </div>
   <% when "accepted" %>
   <p>You have accepted this booking request but no deposit has been paid. Please pay the 10% deposit.</p>
   <div class="button-row">
     <%= link_to "Pay deposit", pay_negotiation_path, class: "btn btn-primary" %>
+    <%= button_to "Back to negotiations", negotiations_path(@gig), method: :get, class: "btn btn-primary" %>
   </div>
   <% when "rejected" %>
   <p>You have rejected this booking request.</p>
   <div class="button-row">
     <%= button_to "Remove booking request", deactivate_negotiation_gig_path, method: :delete, class: "btn btn-danger" %>
+    <%= button_to "Back to negotiations", negotiations_path(@gig), method: :get, class: "btn btn-primary" %>
   </div>
   <% when "paid" %>
   <p>You have accepted this booking request and a deposit has been paid!</p>

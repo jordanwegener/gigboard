@@ -13,13 +13,14 @@
   </div>
   <% if current_user  && @gig.user_id == current_user.id %>
     <h4>This gig belongs to you</h4>
-  <% elsif check_user_negotiations_as_band(@gig) %>
+  <% end%>
+  <% if @active_negotiation %>
     <h4>You have an active booking request for this gig</h4>
   <% end %>
   <div class = "button-row">
     <% if current_user %>
       <% if @gig.user_id == current_user.id %>
-        <% if check_user_negotiations_as_gig(@gig)%>
+        <% if @active_negotiation %>
           <%= link_to "See negotiations",  negotiations_path(@gig), class: "btn btn-primary" %>
         <% end %>
         <%= link_to "Edit gig", edit_gig_path, class: "btn btn-primary" %>
