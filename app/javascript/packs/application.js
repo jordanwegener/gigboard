@@ -22,9 +22,11 @@ document.addEventListener("turbolinks:load", () => {
     $('[data-toggle="popover"]').popover()
 })
 
-document.on("turbolinks:load", function() {
-    const player = new Plyr('#player');
-  });
+// for plyr
+
+// document.on("turbolinks:load", function() {
+//     const player = new Plyr('#player');
+//   });
 
 //   document.addEventListener("turbolinks:load", function() {
 //     const player = new Plyr('#player');

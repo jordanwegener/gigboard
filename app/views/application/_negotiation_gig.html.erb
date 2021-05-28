@@ -6,11 +6,9 @@
   <% if @negotiation.message %>
     <h5>They have left you the following message:</h5>
     <p><%= @negotiation.message %></p>
-    <% if @band.demo %>
-      <h5>And the following audio file:</h5>
-      <audio id="player" controls>
-        <source src="data:audio/mp3;base64,<% user.audio_sample %>" type="audio/mp3">
-      </audio>
+    <% if @negotiation.band.demo %>
+      <h5>Band demo:</h5>
+      <audio src="<%= @negotiation.band.demo %>" type="audio/mp3" controls>Can't play audio.</audio>
     <% end %>
   </div>
 <% end %>

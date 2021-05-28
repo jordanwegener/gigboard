@@ -6,8 +6,10 @@
     <p>Location: <%= @band.location %></p>
     <p>Description:</p>
     <p><%= @band.description %></p>
-    <h5>Band demo:</h5>
-    <audio id="player" src=<% "data:audio/mp3;base64,#{@band.demo}" %> type="audio/mp3" controls></audio>
+    <% if @band.demo %>
+      <h5>Band demo:</h5>
+      <audio src="<%= @band.demo %>" type="audio/mp3" controls>Can't play audio.</audio>
+    <% end %>
   </div>
   <% if current_user && @band.user == current_user %>
     <div class="button-bottom-right">
