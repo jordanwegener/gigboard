@@ -1,22 +1,27 @@
-<h4>If accepted you will be paid <%= number_to_currency(@negotiation.gig.ask_price) %></h4>
 <% case @negotiation.status%>
 <% when "pending" %>
+<h4>If accepted you will be paid <%= number_to_currency(@negotiation.gig.ask_price) %></h4>
 <p>The organiser of this gig hasn't responded to your booking request yet.</p>
 <div class="button-row">
   <%= button_to "Back to Gigs", gigs_path, method: :get, class: "btn btn-primary" %>
 </div>
 <% when "accepted" %>
+<h4>Booking request accepted</h4>
 <p>Your booking request has been <strong>accepted</strong> but no deposit has been paid.</p>
 <div class="button-row">
   <%= button_to "Back to Gigs", gigs_path, method: :get, class: "btn btn-primary" %>
 </div>
 <% when "rejected" %>
+<h4>Booking request rejected</h4>
 <p>Sorry, your booking request has been rejected.</p>
 <div class="button-row">
   <%= button_to "Remove booking request", deactivate_negotiation_band_path, method: :delete, class: "btn  btn-danger" %>
-  <% when "paid" %>
-  <%= button_to "Back to Gigs", gigs_path, method: :get, class: "btn btn-primary" %>
 </div>
+<% when "paid" %>
+<h4>Booking deposit paid</h4>
 <p>Your booking request has been <strong>accepted</strong> and a deposit has been paid!</p>
 <p>Please contact <%= @negotiation.gig.user.email %> to confirm.</p>
+<div class="button-row">
+  <%= button_to "Back to Gigs", gigs_path, method: :get, class: "btn btn-primary" %>
+</div>
 <% end %>

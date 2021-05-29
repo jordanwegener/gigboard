@@ -1,0 +1,10 @@
+<main role="main" class="main-center">
+  <h1>Payment Successful!</h1>
+  <div class="card card-center">
+    <p>You have successfully paid a deposit and <strong><%= @negotiation.band.name %></strong> are booked to play your gig <strong><%= @negotiation.gig.title %></strong></p>
+    <p>Please contact <%= @negotiation.band.user.email %> to make further arrangements!</p>
+  </div>
+  <div class="button-row">
+    <%= button_to "Back to Gigs", gigs_path, method: :get, class: "btn btn-primary" %>
+  </div>
+</main>

@@ -61,7 +61,11 @@ class NegotiationsController < ApplicationController
   def edit
   end
 
-  def pay
+  def success
+    @negotiation.update(status: "paid")
+  end
+
+  def failed
   end
 
   def index
@@ -75,6 +79,30 @@ class NegotiationsController < ApplicationController
   def show
     @gig = @negotiation.gig
     @band = @negotiation.band
+    if @gig.user == current_user
+      @deposit = (@negotiation.gig.ask_price) * 20
+      stripe_session = Stripe::Checkout::Session.create(
+        payment_method_types: ["card"],
+        client_reference_id: current_user.id,
+        customer_email: current_user.email,
+        line_items: [{
+          amount: @deposit.to_i,
+          name: "Deposit: booking for #{@negotiation.gig.title}",
+          description: @negotiation.gig.description,
+          currency: "aud",
+          quantity: 1,
+        }],
+        payment_intent_data: {
+          metadata: {
+            booking_id: @negotiation.id,
+            user_id: current_user.id,
+          },
+        },
+        success_url: "#{root_url}negotiation/success/#{@negotiation.id}",
+        cancel_url: "#{root_url}negotiation/failed/#{@negotiation.id}",
+      )
+      @session_id = stripe_session.id
+    end
   end
 
   private

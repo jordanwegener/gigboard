@@ -4,6 +4,9 @@
     <h2>Your account details:</h2>
     <p>Username: <%= @user.username %></p>
     <p>Email: <%= @user.email %></p>
+    <div class="button-row">
+      <%= button_to "Update details or delete user account", edit_user_registration_path, method: :get, class: "btn btn-warning" %>
+    </div>
   </div>
   <div class="card card-user-profile">
     <h2>Your Bookings (as band)</h2>
@@ -11,13 +14,13 @@
       <% @user_negotiations_as_band.each do |negotiation| %>
         <% if negotiation.active_band == true %>
           <article class="card card-user-profile-child">
-            <h5><strong>Gig title:</strong> <%= negotiation.gig.title %></h5>
+            <h5><strong>Gig title: </strong> <%= negotiation.gig.title %></h5>
             <ul>
-              <li><strong>Gig location:</strong> <%= negotiation.gig.location %></li>
-              <li><strong>Gig date:</strong> <%= negotiation.gig.date %></li>
-              <li><strong>Gig duration:</strong> <%= negotiation.gig.start_time %> to <%= negotiation.gig.end_time %></li>
-              <li><strong>Ask price:</strong> <%= number_to_currency(negotiation.gig.ask_price) %></li>
-              <li><strong>Status:</strong> <%= negotiation.status %></li>
+              <li><strong>Gig location: </strong> <%= negotiation.gig.location %></li>
+              <li><strong>Gig date: </strong> <%= negotiation.gig.date %></li>
+              <li><strong>Gig duration: </strong> <%= negotiation.gig.start_time %> to <%= negotiation.gig.end_time %></li>
+              <li><strong>Ask price: </strong> <%= number_to_currency(negotiation.gig.ask_price) %></li>
+              <li><strong>Status: </strong> <%= negotiation.status %></li>
             </ul>
             <% if negotiation.status == "paid" %>
               <p>A deposit has been paid for this booking! Contact <%= negotiation.band.user.email %> to discuss details.</p>
@@ -41,19 +44,27 @@
     <% if @user_negotiations_as_gig.length > 0 %>
       <% @user_negotiations_as_gig.each do |negotiation| %>
         <article class="card card-user-profile-child">
-          <h5><strong>Gig title:</strong> <%= negotiation.gig.title %></h5>
+          <h5><strong>Gig title: </strong> <%= negotiation.gig.title %></h5>
           <ul>
-            <li><strong>Gig date:</strong><%= negotiation.gig.date %></li>
-            <li><strong>Ask price:</strong> <%= number_to_currency(negotiation.gig.ask_price) %></li>
+            <li><strong>Gig date: </strong><%= negotiation.gig.date %></li>
+            <li><strong>Ask price: </strong> <%= number_to_currency(negotiation.gig.ask_price) %></li>
           </ul>
           <hr>
           <p>The following band has requested to book this gig:</p>
           <ul>
-            <li><strong>Band name:</strong> <%= negotiation.band.name %></li>
-            <li><strong>Style:</strong> <%= negotiation.band.style %></li>
-            <li><strong>Booking status:</strong> <%= negotiation.status %></li>
+            <li><strong>Band name: </strong> <%= negotiation.band.name %></li>
+            <li><strong>Style: </strong> <%= negotiation.band.style %></li>
+            <li><strong>Booking status: </strong> <%= negotiation.status %></li>
           </ul>
-          <%= link_to "View booking to accept or reject", negotiation_path(negotiation), class: "btn btn-primary" %>
+          <% if negotiation.status == "paid" %>
+            <%= link_to "View completed booking", negotiation_path(negotiation), class: "btn btn-primary" %>
+          <% elsif negotiation.status == "accepted" %>
+            <%= link_to "View booking and pay deposit", negotiation_path(negotiation), class: "btn btn-warning" %>
+          <% elsif negotiation.status == "rejected" %>
+            <%= link_to "View or remove booking request", negotiation_path(negotiation), class: "btn btn-primary" %>
+          <% else %>
+            <%= link_to "View booking to accept or reject", negotiation_path(negotiation), class: "btn btn-warning" %>
+          <% end %>
         </article>
       <% end %>
     <% else %>
@@ -65,12 +76,12 @@
     <% if @user.gigs.length > 0 %>
       <% @user.gigs.each do |gig| %>
         <article class="card card-user-profile-child">
-          <h5><strong>Gig title:</strong> <%= gig.title %></h5>
+          <h5><strong>Gig title: </strong> <%= gig.title %></h5>
           <ul>
-            <li><strong>Gig location:</strong> <%= gig.location %></li>
-            <li><strong>Gig date:</strong> <%= gig.date %></li>
-            <li><strong>Gig duration:</strong> <%= gig.start_time %> to <%= gig.end_time %></li>
-            <li><strong>Gig ask price:</strong> <%= number_to_currency(gig.ask_price) %></li>
+            <li><strong>Gig location: </strong> <%= gig.location %></li>
+            <li><strong>Gig date: </strong> <%= gig.date %></li>
+            <li><strong>Gig duration: </strong> <%= gig.start_time %> to <%= gig.end_time %></li>
+            <li><strong>Gig ask price: </strong> <%= number_to_currency(gig.ask_price) %></li>
           </ul>
           <%= link_to "View  gig", gig_path(gig), class: "btn btn-primary" %>
         </article>
@@ -84,10 +95,10 @@
     <% if @user.bands.length > 0 %>
       <% @user.bands.each do |band| %>
         <article class="card card-user-profile-child">
-          <h5><strong>Band name:</strong> <%= band.name %></h5>
+          <h5><strong>Band name: </strong> <%= band.name %></h5>
           <ul>
-            <li><strong>Band location:</strong> <%= band.location %></li>
-            <li><strong>Band style:</strong> <%= band.style %></li>
+            <li><strong>Band location: </strong> <%= band.location %></li>
+            <li><strong>Band style: </strong> <%= band.style %></li>
           </ul>
           <%= link_to "View  band", band_path(band), class: "btn btn-primary" %>
         </article>

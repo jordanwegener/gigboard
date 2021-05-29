@@ -1,0 +1,10 @@
+<main role="main" class="main-center">
+  <h1>Payment Failed :(</h1>
+  <div class="card card-center">
+    <p>Something went wrong...</p>
+    <%= link_to "Would you like to try that again?", negotiation_path(@negotiation) %>
+  </div>
+  <div class="button-row">
+    <%= button_to "Back to Gigs", gigs_path, method: :get, class: "btn btn-primary" %>
+  </div>
+</main>

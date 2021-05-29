@@ -21,8 +21,8 @@ Rails.application.routes.draw do
   #   delete "/users", to: "devise/registrations#destroy"
   #   post "/users", to: "devise/registrations#create"
   # end
-  # gigs paths
   get "/users/index", to: "users#index", as: "user"
+  # gigs paths
   get "/gigs/index", to: "gigs#index", as: "gigs"
   get "/gigs/new", to: "gigs#new", as: "new_gig"
   post "/gigs/", to: "gigs#create", as: "create_gig"
@@ -46,5 +46,6 @@ Rails.application.routes.draw do
   patch "/negotiation/:id/reject", to: "negotiations#reject", as: "reject_negotiation"
   delete "/negotiation/:id/deactivate_gig", to: "negotiations#deactivate_gig", as: "deactivate_negotiation_gig"
   delete "/negotiation/:id/deactivate_band", to: "negotiations#deactivate_band", as: "deactivate_negotiation_band"
-  get "negotiation/:id/pay", to: "negotiations#pay", as: "pay_negotiation"
+  get "negotiation/success/:id", to: "negotiations#success", as: "payment_sucess"
+  get "negotiation/failed/:id", to: "negotiations#failed", as: "payment_failed"
 end
