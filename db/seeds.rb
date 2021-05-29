@@ -25,10 +25,10 @@ puts "Destroying old records"
 User.destroy_all
 puts "Seeding DB"
 puts "Creating Users, Gigs and Bands"
-user1 = User.create!(username: "gigs1", email: "gigs1@mail.com", password: "password")
-user2 = User.create!(username: "gigs2", email: "gigs2@mail.com", password: "password")
-user3 = User.create!(username: "bands1", email: "bands1@mail.com", password: "password")
-user4 = User.create!(username: "bands2", email: "bands2@mail.com", password: "password")
+user1 = User.create!(email: "gigs1@mail.com", password: "password")
+user2 = User.create!(email: "gigs2@mail.com", password: "password")
+user3 = User.create!(email: "bands1@mail.com", password: "password")
+user4 = User.create!(email: "bands2@mail.com", password: "password")
 
 5.times do
   user1.gigs.create!(

@@ -1,37 +1,35 @@
-  <nav class="navbar navbar-fixed-top navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="/">GigBoard</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="<%= root_path %>">GigBoard</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <%= button_to 'See Gigs', gigs_path, method: :get, class: "btn btn-dark" %>
+      </li>
+      <% if user_signed_in? %>
         <li class="nav-item">
-          <%= button_to 'Home', root_path, method: :get, class: "btn btn-dark" %>
+          <%= button_to 'Add a Gig', new_gig_path, method: :get, class: "btn btn-dark" %>
         </li>
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= button_to 'Add a Gig', new_gig_path, method: :get, class: "btn btn-dark" %>
-          </li>
-          <li class="nav-item">
-            <%= button_to 'Add a Band', new_band_path, method: :get, class: "btn btn-dark" %>
-          </li>
-        <% end %>
-      </ul>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= button_to "User Profile (#{current_user.email}) ", user_path, method: :get, class: "btn btn-dark" %>
-          </li>
-        <% end %>
         <li class="nav-item">
-          <% if user_signed_in? %>
-            <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-dark" %>
-          <% else %>
-            <%= button_to "Sign In", new_user_session_path, method: :get, class: "btn btn-dark" %>
-          <% end %>
+          <%= button_to 'Add a Band', new_band_path, method: :get, class: "btn btn-dark" %>
         </li>
-      </ul>
-    </div>
+      <% end %>
+    </ul>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= button_to "User Profile (#{current_user.email}) ", user_path, method: :get, class: "btn btn-dark" %>
+        </li>
+      <% end %>
+      <li class="nav-item">
+        <% if user_signed_in? %>
+          <%= button_to "Sign Out", destroy_user_session_path, method: :delete, class: "btn btn-dark" %>
+        <% else %>
+          <%= button_to "Sign In", new_user_session_path, method: :get, class: "btn btn-dark" %>
+        <% end %>
+      </li>
+    </ul>
   </div>
 </nav>

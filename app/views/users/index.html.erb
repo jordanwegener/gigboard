@@ -2,8 +2,7 @@
   <h1>User Profile</h1>
   <div class="card card-user-profile">
     <h2>Your account details:</h2>
-    <p>Username: <%= @user.username %></p>
-    <p>Email: <%= @user.email %></p>
+    <h4>Email: <%= @user.email %></h4>
     <div class="button-row">
       <%= button_to "Update details or delete user account", edit_user_registration_path, method: :get, class: "btn btn-warning" %>
     </div>
