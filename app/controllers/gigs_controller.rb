@@ -18,8 +18,11 @@ class GigsController < ApplicationController
   end
 
   def show
-    @active_negotiation = (Negotiation.where(gig_id: params[:gig_id], active: true, active_band: true))
-    @active_negotiation = nil if @active_negotiation = []
+    @active_negotiation = (Negotiation.where(gig_id: params[:id], active: true, active_band: true))
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
+    puts "active negotition ="
+    pp @active_negotiation
+    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
   end
 
   def new

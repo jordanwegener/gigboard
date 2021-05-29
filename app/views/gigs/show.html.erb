@@ -11,27 +11,30 @@
     <h4>Description:</h4>
     <%= @gig.description %>
   </div>
-  <% if current_user  && @gig.user_id == current_user.id %>
-    <h4>This gig belongs to you</h4>
-  <% end%>
-  <% if @active_negotiation %>
-    <h4>You have an active booking request for this gig</h4>
-  <% end %>
-  <div class = "button-row">
-    <% if current_user %>
+  <% if current_user %>
+    <%# Messages %>
+    <% if @gig.user_id == current_user.id %>
+      <h4>This gig belongs to you</h4>
+      <% if check_gigs_negotiations_exist(@gig) %>
+        <h4>You have an active booking request for this gig</h4>
+      <% end %>
+    <% end%>
+    <% if check_bands_negotiations_exist(@gig) %>
+      <h4>You have an active booking request for this gig (as a band)</h4>
+    <% end %>
+    <%# Buttons %>
+    <div class = "button-row">
       <% if @gig.user_id == current_user.id %>
+        <%= link_to "Edit gig", edit_gig_path, class: "btn btn-primary" %>
         <% if @active_negotiation %>
           <%= link_to "See negotiations",  negotiations_path(@gig), class: "btn btn-primary" %>
         <% end %>
-        <%= link_to "Edit gig", edit_gig_path, class: "btn btn-primary" %>
+      <% elsif check_bands_negotiations_exist(@gig) %>
+        <%= link_to "See negotiations in user profile", user_path, method: "get", class: "btn btn-primary" %>
       <% else %>
-        <% if check_user_negotiations_as_band(@gig) %>
-          <%= link_to "See negotiation", negotiation_path(check_user_negotiations_as_band(@gig)), method: "get", class: "btn btn-primary" %>
-        <% else %>
-          <%= link_to "Request to book this gig", new_negotiation_path, method: "get", class: "btn btn-primary" %>
-        <% end %>
+        <%= link_to "Request to book this gig", new_negotiation_path, method: "get", class: "btn btn-primary" %>
       <% end %>
-    <% end%>
-    <%= link_to "Back to Gigs", gigs_path, class: "btn btn-primary"%>
+    <% end %>
+    <%= link_to "Back", :back, class: "btn btn-primary" %>
   </div>
 </main>
