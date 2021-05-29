@@ -1,5 +1,4 @@
 class GigsController < ApplicationController
-  # before_action :authenticate_user, only: [:new, :edit]
   before_action :set_gig, only: [:show, :edit, :update]
   before_action :authorize_gig, only: [:edit, :update, :destroy, :deactivate]
 
@@ -11,18 +10,16 @@ class GigsController < ApplicationController
     @gig = Gig.new(gig_params)
     @gig.user = current_user
     if @gig.save
+      flash.notice = "Gig added successfully!"
       redirect_to gig_path(@gig)
     else
+      flash.alert = "Something went wrong. Please try again and if the problem persists contact an administrator."
       render "new"
     end
   end
 
   def show
     @active_negotiation = (Negotiation.where(gig_id: params[:id], active: true, active_band: true))
-    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
-    puts "active negotition ="
-    pp @active_negotiation
-    puts "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
   end
 
   def new
@@ -31,7 +28,7 @@ class GigsController < ApplicationController
 
   def destroy
     @gig.destroy
-    flash[:alert] = "Gig successfully removed!"
+    flash.notice = "Gig successfully removed!"
     redirect_to gigs_path
   end
 

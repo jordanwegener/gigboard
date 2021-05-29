@@ -3,6 +3,8 @@
   <h2><%= link_to "#{@gig.title}", gig_path(@gig) %></h2>
   <% if @negotiations.length > 1 %>
     <h3>The following bands have requested to book this gig:</h3>
+  <% elsif @negotiations.length == 0 %>
+    <p>No negotiations for this gig yet. Don't worry, there's a band out there for every gig...</p>
   <% else %>
     <h3>The following band has requested to book this gig:</h3>
   <% end %>

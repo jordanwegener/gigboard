@@ -1,5 +1,8 @@
 class NegotiationsController < ApplicationController
   before_action :set_negotiation, except: [:new, :create, :index]
+  before_action :authorize_negotiation_gig, only: [:deactivate_gig, :accept, :reject, :edit, :pay]
+  before_action :authorize_negotiation_band, only: [:deactivate_band]
+  before_action :authorize_negotiation, only: [:show]
 
   def new
     @gig = Gig.find(params[:id])
@@ -11,8 +14,10 @@ class NegotiationsController < ApplicationController
     @gig = Gig.find(params[:id])
     @negotiation = @gig.negotiations.new(negotiation_params)
     if @negotiation.save
+      flash.notice = "Booking request made successfully!"
       redirect_to negotiation_path(@negotiation)
     else
+      flash.alert = "Something went wrong. Please try again and if the problem persists contact an administrator."
       render :new
     end
   end
@@ -73,6 +78,24 @@ class NegotiationsController < ApplicationController
   end
 
   private
+
+  def authorize_negotiation
+    return if @negotiation.gig.user == current_user || @negotiation.band.user == current_user
+    flash[:alert] = "You lack the permissions to do this. If you think this is an error, please contact an administrator."
+    redirect_to gigs_path
+  end
+
+  def authorize_negotiation_gig
+    return if @negotiation.gig.user == current_user
+    flash[:alert] = "You lack the permissions to do this. If you think this is an error, please contact an administrator."
+    redirect_to gigs_path
+  end
+
+  def authorize_negotiation_band
+    return if @negotiation.band.user == current_user
+    flash[:alert] = "You lack the permissions to do this. If you think this is an error, please contact an administrator."
+    redirect_to gigs_path
+  end
 
   def set_negotiation
     @negotiation = Negotiation.find(params[:id])

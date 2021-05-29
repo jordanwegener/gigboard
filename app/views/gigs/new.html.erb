@@ -23,15 +23,15 @@
         <%= form.text_field :end_time %>
       </p>
       <p>
-        <%= form.label :ask_price %><br>
-        <%= form.text_field :ask_price %>
+        <%= form.label :ask_price, "Ask price ($AUD)" %><br>
+        <%= form.number_field :ask_price %>
       </p>
       <p>
         <%= form.label :description %><br>
         <%= form.text_area :description %>
       </p>
       <p>
-        <%= form.submit "Create Gig", class: "btn btn-primary" %>
+        <%= form.submit "Create gig", class: "btn btn-primary" %>
       </p>
     <% end %>
   </div>

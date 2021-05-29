@@ -1,5 +1,6 @@
 class BandsController < ApplicationController
   before_action :set_band, only: [:show, :edit, :update, :destroy, :deactivate]
+  before_action :authorize_band, only: [:update, :edit, :destroy]
 
   def index
     @bands = Band.all
@@ -20,6 +21,7 @@ class BandsController < ApplicationController
   end
 
   def update
+    params[:band][:demo] = base64encode(params[:band][:demo]) if params[:band][:demo]
     if @band.update(band_params)
       redirect_to @band
     else
@@ -36,8 +38,8 @@ class BandsController < ApplicationController
 
   def destroy
     @band.destroy
-    flash[:alert] = "Band successfully removed!"
-    redirect_to bands_path
+    flash.notice = "Band successfully removed!"
+    redirect_to gigs_path
   end
 
   private
@@ -50,7 +52,7 @@ class BandsController < ApplicationController
     @band = current_user.bands.find_by_id(params[:id])
     return if @band
     flash[:alert] = "You lack the permissions to do this. If you think this is an error, please contact an administrator."
-    redirect_to bands_path
+    redirect_to gigs_path
   end
 
   def set_band

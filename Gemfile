@@ -59,7 +59,6 @@ gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "aws-sdk-s3", "~> 1.94"
 
-gem "stripe", "~> 5.32"
 
 gem "devise", "~> 4.8"
 
@@ -68,3 +67,5 @@ gem "faker", "~> 2.17"
 gem "cancancan", "~> 3.2"
 
 gem "base64"
+
+gem "stripe", "~> 5.33"

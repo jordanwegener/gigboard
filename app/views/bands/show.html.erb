@@ -14,8 +14,9 @@
       <% end %>
     </div>
     <% if current_user && @band.user == current_user %>
-      <div class="button-bottom-right">
-        <%= link_to "Edit Band", edit_band_path(@band), class: "btn btn-primary" %>
+      <div class="button-row">
+        <%= button_to "Edit Band", edit_band_path(@band), method: :patch, class: "btn btn-primary" %>
+        <%= button_to "Delete Band", destroy_band_path(@band), method: :delete, class: "btn btn-danger" %>
       </div>
     <% end %>
   </div>

@@ -16,7 +16,7 @@ class Ability
       can :manage, Band do |band|
         band.user == user
       end
-      can :update, Negotiation do |negotiation|
+      can :manage, Negotiation do |negotiation|
         negotiation.band.user == user || negotiation.gig.user == user
       end
 

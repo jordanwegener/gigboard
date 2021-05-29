@@ -22,7 +22,9 @@
           </article>
         <% end %>
         <div class="button-row">
-          <%= button_to 'Add a new gig listing', new_gig_path, method: :get, class: "btn btn-primary" %>
+          <% if current_user %>
+            <%= button_to 'Add a new gig listing', new_gig_path, method: :get, class: "btn btn-primary" %>
+          <% end %>
           <%= button_to 'Back to top', gigs_path, method: :get, class: "btn btn-primary" %>
         </div>
       </div>

@@ -252,7 +252,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   spring
-  stripe (~> 5.32)
+  stripe (~> 5.33)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)
