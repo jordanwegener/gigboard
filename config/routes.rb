@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   get "/bands/new", to: "bands#new", as: "new_band"
   post "/bands/new", to: "bands#create", as: "create_band"
   get "/bands/:id", to: "bands#show", as: "band"
-  get "/bands/:id/edit", to: "bands#edit", as: "edit_band"
+  patch "/bands/:id/edit", to: "bands#edit", as: "edit_band"
   patch "/bands/:id", to: "bands#update", as: "update_band"
   delete "/bands/:id/delete", to: "bands#destroy", as: "destroy_band"
   # negotiations paths

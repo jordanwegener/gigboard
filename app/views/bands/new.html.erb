@@ -1,6 +1,6 @@
 <main role="main" class="main-center">
   <h1>New Band</h1>
-  <div class="card">
+  <div class="card card-center">
     <%= form_with scope: :band, local: true do |form| %>
       <p>
         <%= form.label :name %><br>
@@ -18,12 +18,14 @@
         <%= form.label :description %><br>
         <%= form.text_field :description %>
       </p>
-      <p>Upload a demo<br>
-        (mp3 format, limit 10MB):<br>
-        <%= form.file_field :demo %><br>
+      <div class="card card-center">
+        <p>Upload a demo<br>
+          (mp3 format, limit 10MB):<br>
+          <%= form.file_field :demo %><br>
+        </div>
       </p>
-      <p>
-        <%= form.submit "Add Band" %>
+      <p class="button-row">
+        <%= form.submit "Update band", class: "btn btn-primary" %>
       </p>
     <% end %>
   </div>
