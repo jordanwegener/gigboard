@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require "chronic"
+
 def generate_gig_name
   case rand(1..7)
   when 1
@@ -38,11 +40,11 @@ user4 = User.create!(email: "bands2@mail.com", password: "password")
   user1.gigs.create!(
     title: generate_gig_name,
     location: (Faker::Address.street_address + ", " + Faker::Address.city),
-    start_time: ((rand(1..12).to_s) + " AM"),
-    end_time: ((rand(1..12).to_s) + " PM"),
+    start_time: Chronic.parse((rand(1..12).to_s) + " AM"),
+    end_time: Chronic.parse((rand(1..12).to_s) + " PM"),
     ask_price: rand(50.00..500.00),
-    description: Faker::Lorem.paragraph,
-    date: Faker::Date.between(from: Date.today, to: 150.days.from_now),
+    description: Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
+    date: Chronic.parse(Faker::Date.between(from: Date.today, to: 150.days.from_now)),
     active: true,
   )
 end
@@ -51,11 +53,11 @@ end
   user2.gigs.create!(
     title: generate_gig_name,
     location: (Faker::Address.street_address + ", " + Faker::Address.city),
-    start_time: ((rand(1..12).to_s) + " AM"),
-    end_time: ((rand(1..12).to_s) + " PM"),
+    start_time: Chronic.parse((rand(1..12).to_s) + " AM"),
+    end_time: Chronic.parse((rand(1..12).to_s) + " PM"),
     ask_price: rand(50.00..500.00),
-    description: Faker::Lorem.paragraph,
-    date: Faker::Date.between(from: Date.today, to: 150.days.from_now),
+    description: Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
+    date: Chronic.parse(Faker::Date.between(from: Date.today, to: 150.days.from_now)),
     active: true,
   )
 end
@@ -65,7 +67,7 @@ end
     name: Faker::Music.band,
     location: Faker::Address.city,
     style: Faker::Music.genre,
-    description: Faker::Lorem.paragraph,
+    description: Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
   )
 end
 
@@ -74,7 +76,7 @@ end
     name: Faker::Music.band,
     location: Faker::Address.city,
     style: Faker::Music.genre,
-    description: Faker::Lorem.paragraph,
+    description: Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph + " " + Faker::Lorem.paragraph,
   )
 end
 
