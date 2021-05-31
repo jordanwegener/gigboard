@@ -14,8 +14,10 @@ class BandsController < ApplicationController
     @band = Band.new(band_params)
     @band.user = current_user
     if @band.save
+      flash.notice = "Band successfully created!"
       redirect_to @band
     else
+      flash.alert = "Something went wrong. Please try again and if the problem persists contact an administrator."
       render "new"
     end
   end
@@ -23,8 +25,10 @@ class BandsController < ApplicationController
   def update
     params[:band][:demo] = base64encode(params[:band][:demo]) if params[:band][:demo]
     if @band.update(band_params)
+      flash.notice = "Band successfully updated!"
       redirect_to @band
     else
+      flash.alert = "Something went wrong. Please try again and if the problem persists contact an administrator."
       render "edit"
     end
   end
@@ -37,9 +41,12 @@ class BandsController < ApplicationController
   end
 
   def destroy
-    @band.destroy
-    flash.notice = "Band successfully removed!"
-    redirect_to gigs_path
+    if @band.destroy
+      flash.notice = "Band successfully removed!"
+      redirect_to gigs_path
+    else
+      flash.alert = "Something went wrong. Please try again and if the problem persists contact an administrator."
+    end
   end
 
   private

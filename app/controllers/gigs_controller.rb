@@ -32,9 +32,13 @@ class GigsController < ApplicationController
   end
 
   def destroy
-    @gig.destroy
-    flash.notice = "Gig successfully removed!"
-    redirect_to gigs_path
+    if @gig.destroy
+      flash.notice = "Gig successfully removed!"
+      redirect_to gigs_path
+    else
+      flash.alert = "Something went wrong. Please try again and if the problem persists contact an administrator."
+      render "show"
+    end
   end
 
   def book
@@ -44,20 +48,19 @@ class GigsController < ApplicationController
   end
 
   def update
-    if @gig.update(gig_params)
+    @gig.date = (Chronic.parse(params[:gig][:date])).strftime("%d %B %Y")
+    @gig.start_time = (Chronic.parse(params[:gig][:start_time])).strftime("%-l:%M%p")
+    @gig.end_time = (Chronic.parse(params[:gig][:end_time])).strftime("%-l:%M%p")
+    if @gig.update(params.require(:gig).permit(
+      :title, :location, :ask_price, :description, :search
+    ))
+      flash.notice = "Gig updated successfully!"
       redirect_to @gig
     else
+      flash.alert = "Something went wrong. Please try again and if the problem persists contact an administrator."
       render "edit"
     end
   end
-
-  # def date_str(date)
-  #   date.strftime("#{date.day.ordinalize} %B %Y")
-  # end
-
-  # def time_str(time)
-  #   time.strftime("%-l:%M%p")
-  # end
 
   private
 
@@ -74,8 +77,5 @@ class GigsController < ApplicationController
 
   def set_gig
     @gig = Gig.find(params[:id])
-    # @gig.date = @gig.date.strftime("#{date.day.ordinalize} %B %Y")
-    # @gig.start_time = @gig.start_time.strftime("%-l:%M%p")
-    # @gig.end_time = @gig.end_time.strftime("%-l:%M%p")
   end
 end

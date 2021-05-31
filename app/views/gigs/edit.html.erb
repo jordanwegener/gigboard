@@ -1,7 +1,7 @@
 <main role="main" class="main-center">
   <h1>Edit Gig Listing</h1>
   <div class="card card-center">
-    <%= form_with model:@gig, url:create_gig_path, local: true do |form| %>
+    <%= form_with model: @gig, url:update_gig_path, local: true do |form| %>
       <p>
         <%= form.label :title %><br>
         <%= form.text_field :title, maxlength: 50, size:20 %>

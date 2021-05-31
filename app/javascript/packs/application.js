@@ -15,19 +15,9 @@ Turbolinks.start()
 ActiveStorage.start()
 
 import "bootstrap"
-import "../stylesheets/application"
+
 
 document.addEventListener("turbolinks:load", () => {
     $('[data-toggle="tooltip"]').tooltip()
     $('[data-toggle="popover"]').popover()
 })
-
-// for plyr
-
-// document.on("turbolinks:load", function() {
-//     const player = new Plyr('#player');
-//   });
-
-//   document.addEventListener("turbolinks:load", function() {
-//     const player = new Plyr('#player');
-//   });
