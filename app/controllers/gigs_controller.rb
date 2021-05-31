@@ -11,9 +11,9 @@ class GigsController < ApplicationController
   def create
     @gig = Gig.new(gig_params)
     @gig.user = current_user
-    @gig.start_time = Time.new(Chronic.parse(params[:gig][:start_time]))
-    @gig.end_time = Time.new(Chronic.parse(params[:gig][:end_time]))
-    @gig.date = Time.new(Chronic.parse(params[:gig][:date]))
+    @gig.date = (Chronic.parse(params[:gig][:date])).strftime("%d %B %Y")
+    @gig.start_time = (Chronic.parse(params[:gig][:start_time])).strftime("%-l:%M%p")
+    @gig.end_time = (Chronic.parse(params[:gig][:end_time])).strftime("%-l:%M%p")
     if @gig.save
       flash.notice = "Gig added successfully!"
       redirect_to gig_path(@gig)
@@ -74,7 +74,6 @@ class GigsController < ApplicationController
 
   def set_gig
     @gig = Gig.find(params[:id])
-    @gig.date.strftime
     # @gig.date = @gig.date.strftime("#{date.day.ordinalize} %B %Y")
     # @gig.start_time = @gig.start_time.strftime("%-l:%M%p")
     # @gig.end_time = @gig.end_time.strftime("%-l:%M%p")
