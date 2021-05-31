@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  # devise_for :users
   # resources :gigs, only: [:create]
   root to: "gigs#index"
   # devise_for :users, skip: :all
