@@ -1,4 +1,4 @@
-<main>
+<main role="main" class="main-center">
   <div class = "content-container">
     <h1>View Band</h1>
     <div class="card">
@@ -12,12 +12,13 @@
         <h5><strong>Band demo:</strong></h5>
         <audio src="<%= @band.demo %>" type="audio/mp3" controls style="width: 100%"%>Can't play audio.</audio>
       <% end %>
+      <% if current_user && @band.user == current_user %>
+        <div class="button-row">
+          <%= button_to "Edit Band", edit_band_path(@band), method: :patch, class: "btn btn-primary" %>
+          <%= button_to "Delete Band", destroy_band_path(@band), method: :delete, class: "btn btn-danger" %>
+        </div>
+      <% end %>
     </div>
-    <% if current_user && @band.user == current_user %>
-      <div class="button-row">
-        <%= button_to "Edit Band", edit_band_path(@band), method: :patch, class: "btn btn-primary" %>
-        <%= button_to "Delete Band", destroy_band_path(@band), method: :delete, class: "btn btn-danger" %>
-      </div>
-    <% end %>
   </div>
+  <%= link_to "Back", :back, class: "btn btn-primary" %>
 </main>

@@ -116,6 +116,7 @@ caption {
     align-items: center;
     column-gap: 20px;
     width: 100%;
+    flex-wrap: wrap;
 }
 .gig-info, .gig-title {
     display: flex;
@@ -138,6 +139,8 @@ caption {
 .gig-index-card {
     width: 400px;
     height: 170px;
+    display: flex;
+    justify-content: space-between;
 }
 .content-container {
     display: flex;
@@ -155,6 +158,9 @@ caption {
 }
 .div-search {
     text-align: center;
+}
+.btn {
+    white-space: nowrap;
 }
 
 @media screen and (max-width: 1500px) {

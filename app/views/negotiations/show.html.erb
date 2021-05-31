@@ -1,6 +1,6 @@
-<main role="main" class="content-container text-center">
+<main role="main" class="main-center">
   <h1>Booking request</h1>
-  <div class="card card-negotiation">
+  <div class="card card-negotiation text-center">
     <h2><%= @negotiation.gig.title %></h2>
     <% if @negotiation.gig.user.id == current_user.id %>
       <%= render :partial => 'negotiation_gig', locals: { post: @post } %>

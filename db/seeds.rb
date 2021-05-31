@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 def generate_gig_name
-  case rand(1..5)
+  case rand(1..7)
   when 1
     gig_name = "Show at " + Faker::Coffee.blend_name + " Cafe"
   when 2
@@ -17,6 +17,10 @@ def generate_gig_name
     gig_name = "Come play music at " + Faker::Restaurant.name
   when 5
     gig_name = "Acoustic duo needed at " + Faker::Coffee.blend_name + " Bar and Brewery"
+  when 6
+    gig_name = "Musicians needed at the " + Faker::Coffee.blend_name + " Cafe"
+  when 7
+    gig_name = "Play a show at " + Faker::Restaurant.name
   end
   return gig_name
 end
@@ -55,50 +59,6 @@ end
     active: true,
   )
 end
-
-# 5.times do
-#   user3.gigs.create!(
-#     title: generate_gig_name,
-#     location: (Faker::Address.street_address + ", " + Faker::Address.city),
-#     start_time: ((rand(1..12).to_s) + " AM"),
-#     end_time: ((rand(1..12).to_s) + " PM"),
-#     ask_price: rand(50.00..500.00),
-#     description: Faker::Lorem.paragraph,
-#     date: Faker::Date.between(from: Date.today, to: 150.days.from_now),
-#     active: true,
-#   )
-# end
-
-# 5.times do
-#   user4.gigs.create!(
-#     title: generate_gig_name,
-#     location: (Faker::Address.street_address + ", " + Faker::Address.city),
-#     start_time: ((rand(1..12).to_s) + " AM"),
-#     end_time: ((rand(1..12).to_s) + " PM"),
-#     ask_price: rand(50.00..500.00),
-#     description: Faker::Lorem.paragraph,
-#     date: Faker::Date.between(from: Date.today, to: 150.days.from_now),
-#     active: true,
-#   )
-# end
-
-# 3.times do
-#   user1.bands.create!(
-#     name: Faker::Music.band,
-#     location: Faker::Address.city,
-#     style: Faker::Music.genre,
-#     description: Faker::Lorem.paragraph,
-#   )
-# end
-
-# 3.times do
-#   user2.bands.create!(
-#     name: Faker::Music.band,
-#     location: Faker::Address.city,
-#     style: Faker::Music.genre,
-#     description: Faker::Lorem.paragraph,
-#   )
-# end
 
 3.times do
   user3.bands.create!(
