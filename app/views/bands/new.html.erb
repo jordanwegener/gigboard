@@ -4,19 +4,19 @@
     <%= form_with scope: :band, local: true do |form| %>
       <p>
         <%= form.label :name %><br>
-        <%= form.text_field :name %>
+        <%= form.text_field :name, maxlength: 30, size: 20 %>
       </p>
       <p>
         <%= form.label :location %><br>
-        <%= form.text_field :location %>
+        <%= form.text_field :location, maxlength: 30, size: 20 %>
       </p>
       <p>
         <%= form.label :style %><br>
-        <%= form.text_field :style %>
+        <%= form.text_field :style, maxlength: 30, size: 20 %>
       </p>
       <p>
         <%= form.label :description %><br>
-        <%= form.text_field :description %>
+        <%= form.text_area :description, maxlength: 200, size: 20 %>
       </p>
       <div class="card card-center">
         <p>Upload a demo<br>

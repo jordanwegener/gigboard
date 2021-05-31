@@ -4,31 +4,31 @@
     <%= form_with model:@gig, url:create_gig_path, local: true do |form| %>
       <p>
         <%= form.label :title %><br>
-        <%= form.text_field :title %>
+        <%= form.text_field :title, maxlength: 50, size:20 %>
       </p>
       <p>
         <%= form.label :location %><br>
-        <%= form.text_field :location %>
+        <%= form.text_field :location, maxlength: 50, size:20 %>
       </p>
       <p>
         <%= form.label :date %><br>
-        <%= form.text_field :date %>
+        <%= form.text_field :date, maxlength: 30, size:20 %>
       </p>
       <p>
         <%= form.label :start_time %><br>
-        <%= form.text_field :start_time %>
+        <%= form.text_field :start_time, maxlength: 10, size:20 %>
       </p>
       <p>
         <%= form.label :end_time %><br>
-        <%= form.text_field :end_time %>
+        <%= form.text_field :end_time, maxlength: 10, size:20 %>
       </p>
       <p>
         <%= form.label :ask_price, "Ask price ($AUD)" %><br>
-        <%= form.text_field :ask_price %>
+        <%= form.number_field :ask_price %>
       </p>
       <p>
         <%= form.label :description %><br>
-        <%= form.text_area :description %>
+        <%= form.text_area :description, maxlength: 200, size:20 %>
       </p>
       <p>
         <%= form.submit "Update gig", class: "btn btn-primary" %>

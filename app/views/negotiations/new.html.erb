@@ -1,26 +1,31 @@
 <main role="main" class="main-center">
   <h1>Send Booking Request</h1>
   <div class="card card-center">
-    <h3>You are requesting to book <strong><%= @gig.title %></strong></h2>
-    <h4>If accepted you will be paid <strong><%= number_to_currency(@gig.ask_price) %></strong></h4>
-    <div class="card card-negotiation">
-      <p>Please choose a band you'd like to book this gig with</p>
-      <%= form_with model: @negotiation, url:create_negotiation_path, local: true do |form| %>
-        <p>
-          <%= form.label :band_id, "Band: " %>
-          <%= form.select(:band_id, @bands.map{|band| [band.name, band.id]}) %>
-        </p>
-        <p>Leave a message for the gig organiser - say hi and tell them why they should book you!</p>
-        <p>
-          <%= form.label :message, "Message: " %><br>
-          <%= form.text_area :message %>
-        </p>
-      </div>
-      <div class="button-row">
-        <p>
-          <%= form.submit "Send booking request", class: "btn btn-primary" %>
-        </p>
-      </div>
+    <% if current_user.bands.length > 0 %>
+      <h3>You are requesting to book <strong><%= @gig.title %></strong></h2>
+      <h4>If accepted you will be paid <strong><%= number_to_currency(@gig.ask_price) %></strong></h4>
+      <div class="card card-negotiation">
+        <p>Please choose a band you'd like to book this gig with</p>
+        <%= form_with model: @negotiation, url:create_negotiation_path, local: true do |form| %>
+          <p>
+            <%= form.label :band_id, "Band: " %>
+            <%= form.select(:band_id, @bands.map{|band| [band.name, band.id]}) %>
+          </p>
+          <p>Leave a message for the gig organiser - say hi and tell them why they should book you!</p>
+          <p>
+            <%= form.label :message, "Message: " %><br>
+            <%= form.text_area :message, maxlength: 200 %>
+          </p>
+        </div>
+        <div class="button-row">
+          <p>
+            <%= form.submit "Send booking request", class: "btn btn-primary" %>
+          </p>
+        </div>
+      <% end %>
+    <% else%>
+      <p>You have no bands to book a gig with.<br>
+        Would you like to <%= link_to "create one?", new_band_path %></p>
     <% end %>
   </div>
 </main>
