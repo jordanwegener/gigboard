@@ -24,7 +24,7 @@
     <%= button_to "Back to negotiations", negotiations_path(@gig), method: :get, class: "btn btn-primary" %>
   </div>
   <% when "accepted" %>
-  <p>You have accepted this booking request but no deposit has been paid. Please pay the 10% deposit.</p>
+  <p>You have accepted this booking request but no deposit has been paid. Please pay the 20% deposit.</p>
   <div class="button-row">
     <%= button_tag "Pay #{number_to_currency(@deposit / 100)} deposit", 
     data: {
